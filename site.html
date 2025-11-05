@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TecPrices</title>
+<style>
+  /* Reset básico */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2f2f2f;
+    color: white;
+  }
+  /* HEADER com botão de menu */
+  header {
+    display: flex;
+    align-items: center;
+    background-color: #1b1b1b;
+    padding: 10px 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1100;
+  }
+  /* Ícone hambúrguer */
+  .menu-toggle {
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    position: relative;
+  }
+  .menu-toggle span {
+    background-color: white;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    border-radius: 3px;
+    left: 0;
+    transition: 0.3s ease;
+  }
+  .menu-toggle span:nth-child(1) { top: 0; }
+  .menu-toggle span:nth-child(2) { top: 8px; }
+  .menu-toggle span:nth-child(3) { top: 16px; }
+
+  /* Animação para o X */
+  .menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 8px;
+  }
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 8px;
+  }
+
+  header h1 {
+    margin-left: 15px;
+    color: white;
+    font-size: 22px;
+    user-select: none;
+  }
+
+  /* NAV oculto inicialmente */
+  nav {
+    background-color: #1b1b1b;
+    position: fixed;
+    top: 50px; /* altura do header */
+    left: -220px; /* escondido da tela */
+    width: 200px;
+    height: calc(100% - 50px);
+    padding: 20px;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    z-index: 1050;
+  }
+  nav.open {
+    left: 0;
+  }
+  nav h1 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 30px;
+    user-select: none;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  nav ul li {
+    margin: 15px 0;
+  }
+  nav ul li a {
+    color: #00a0a0;
+    text-decoration: none;
+    font-size: 16px;
+    user-select: none;
+  }
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+
+  /* CONTEÚDO principal */
+  main {
+    padding: 70px 20px 20px 20px;
+    transition: margin-left 0.3s ease;
+  }
+  main.shifted {
+    margin-left: 220px;
+  }
+
+  /* Estilos do seu conteúdo */
+
+  .banner {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: red;
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+  .buttons {
+    margin-bottom: 30px;
+  }
+  .buttons button {
+    margin-right: 10px;
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 7px 15px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .buttons button:hover {
+    background-color: red;
+  }
+  .subtitle {
+    font-size: 20px;
+    font-style: italic;
+    color: #7a66cc;
+    margin-bottom: 8px;
+  }
+  .subtitle2 {
+    font-size: 16px;
+    color: #2F9B2F;
+    margin-bottom: 20px;
+  }
+  .content {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .content img {
+    max-width: 400px;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 400px;
+  }
+  .content div {
+    flex: 1;
+    font-size: 14px;
+    color: #ddd;
+  }
+  .content div p.red {
+    color: #FF0000;
+    font-weight: bold;
+  }
+  .content div button {
+    margin-top: 20px;
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 7px 15px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .content div button:hover {
+    background-color: red;
+  }
+  hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 30px 0;
+  }
+
+  /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+  @media (min-width: 768px) {
+    nav {
+      left: 0 !important;
+    }
+    main {
+      margin-left: 220px !important;
+      padding-top: 20px;
+    }
+    header .menu-toggle {
+      display: none;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <h1>TecPrices</h1>
+</header>
+
+<nav id="side-menu" aria-label="Menu de navegação">
+  <ul>
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Requisitos de jogos</a></li>
+    <li><a href="#">Teste de desempenho</a></li>
+    <li><a href="#">Computadores ▾</a></li>
+    <li><a href="#">Periféricos ▾</a></li>
+    <li><a href="#">Monte seu Setup</a></li>
+    <li><a href="#">Sobre nós</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+  <img src="https://i.imgur.com/0Yb7l3m.png" alt="Banner TecPrices" class="banner" />
+
+  <h2>Veja os nossos departamentos!</h2>
+  <div class="buttons">
+    <button>Computadores</button>
+    <button>Periféricos</button>
+    <button>Monte seu Setup</button>
+    <button>Requisitos de Jogos</button>
+  </div>
+
+  <h3 class="subtitle">Algumas máquinas para Games</h3>
+  <p class="subtitle2">Para você que busca melhor desempenho nos Games, clique no botão abaixo:</p>
+
+  <div class="content">
+    <img src="https://i.imgur.com/Kmt4uXq.jpg" alt="Setup Gamer" />
+    <div>
+      <p class="red">O que é necessário para jogar games em um PC?</p>
+      <p>A diferença é a instalação do SSD e GPU (placas de vídeo), o GPU trabalha na parte do
+        carregamento das imagens que CPU não aguenta porque ele é melhor para games.</p>
+      <p>SSD carrega as informações que existe nele, isso melhora muito mais a qualidade do que
+        você usar um HD.</p>
+      <button>Máquinas para Gamers</button>
+    </div>
+  </div>
+
+  <hr />
+</main>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const sideMenu = document.getElementById('side-menu');
+  const mainContent = document.getElementById('main-content');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    sideMenu.classList.toggle('open');
+    mainContent.classList.toggle('shifted');
+  });
+
+  // Permitir abrir menu pelo teclado (Enter / Espaço)
+  menuToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      menuToggle.click();
+    }
+  });
+</script>
+
+</body>
+</html>
