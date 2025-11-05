@@ -14,15 +14,15 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #2f2f2f;
-      color: white;
+      background-color: white; /* Fundo branco */
+      color: black; /* Texto preto para legibilidade */
     }
 
     /* HEADER com botão de menu */
     header {
       display: flex;
       align-items: center;
-      background-color: #1b1b1b;
+      background-color: gray; /* Fundo cinza */
       padding: 10px 15px;
       position: fixed;
       width: 100%;
@@ -39,7 +39,7 @@
     }
 
     .menu-toggle span {
-      background-color: white;
+      background-color: white; /* Branco */
       position: absolute;
       height: 3px;
       width: 100%;
@@ -77,14 +77,14 @@
 
     header h1 {
       margin-left: 15px;
-      color: white;
+      color: white; /* Branco */
       font-size: 22px;
       user-select: none;
     }
 
     /* NAV oculto inicialmente */
     nav {
-      background-color: #1b1b1b;
+      background-color: gray; /* Fundo cinza */
       position: fixed;
       top: 50px;
       /* altura do header */
@@ -103,7 +103,7 @@
     }
 
     nav h1 {
-      color: white;
+      color: white; /* Branco */
       font-size: 24px;
       margin-bottom: 30px;
       user-select: none;
@@ -121,7 +121,7 @@
     }
 
     nav ul li a {
-      color: #00a0a0;
+      color: white; /* Branco */
       text-decoration: none;
       font-size: 16px;
       user-select: none;
@@ -129,7 +129,7 @@
     }
 
     nav ul li a:hover {
-      text-decoration: underline;
+      color: red; /* Vermelho no hover */
     }
 
     /* Estilos para submenus */
@@ -138,9 +138,13 @@
       right: 0;
       top: 0;
       cursor: pointer;
-      color: #00a0a0;
+      color: white; /* Branco */
       font-size: 14px;
       user-select: none;
+    }
+
+    nav ul li.submenu .arrow:hover {
+      color: red; /* Vermelho no hover */
     }
 
     nav ul li ul {
@@ -159,13 +163,13 @@
     }
 
     nav ul li ul li a {
-      color: #ccc;
+      color: #ccc; /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
       font-size: 14px;
       padding-right: 0; /* Sem padding extra nos subitens */
     }
 
     nav ul li ul li a:hover {
-      color: #00a0a0;
+      color: red; /* Vermelho no hover */
     }
 
     /* CONTEÚDO principal */
@@ -189,7 +193,7 @@
     h2 {
       font-size: 28px;
       font-weight: bold;
-      color: red;
+      color: red; /* Mantém vermelho */
       font-style: italic;
       margin-bottom: 15px;
     }
@@ -201,27 +205,27 @@
     .buttons button {
       margin-right: 10px;
       background: none;
-      border: 1px solid white;
-      color: white;
+      border: 1px solid black; /* Preto para legibilidade */
+      color: black; /* Preto */
       padding: 7px 15px;
       cursor: pointer;
       font-size: 14px;
     }
 
     .buttons button:hover {
-      background-color: red;
+      background-color: red; /* Vermelho */
     }
 
     .subtitle {
       font-size: 20px;
       font-style: italic;
-      color: #7a66cc;
+      color: #7a66cc; /* Mantém roxo */
       margin-bottom: 8px;
     }
 
     .subtitle2 {
       font-size: 16px;
-      color: #2F9B2F;
+      color: #2F9B2F; /* Mantém verde */
       margin-bottom: 20px;
     }
 
@@ -242,31 +246,31 @@
     .content div {
       flex: 1;
       font-size: 14px;
-      color: #ddd;
+      color: #333; /* Cinza escuro para legibilidade */
     }
 
     .content div p.red {
-      color: #FF0000;
+      color: #FF0000; /* Vermelho */
       font-weight: bold;
     }
 
     .content div button {
       margin-top: 20px;
       background: none;
-      border: 1px solid white;
-      color: white;
+      border: 1px solid black; /* Preto */
+      color: black; /* Preto */
       padding: 7px 15px;
       cursor: pointer;
       font-size: 14px;
     }
 
     .content div button:hover {
-      background-color: red;
+      background-color: red; /* Vermelho */
     }
 
     hr {
       border: 0;
-      border-top: 1px solid #444;
+      border-top: 1px solid #ccc; /* Cinza claro */
       margin: 30px 0;
     }
 
