@@ -117,6 +117,7 @@
 
     nav ul li {
       margin: 15px 0;
+      position: relative;
     }
 
     nav ul li a {
@@ -124,10 +125,47 @@
       text-decoration: none;
       font-size: 16px;
       user-select: none;
+      padding-right: 20px; /* Espaço para a seta */
     }
 
     nav ul li a:hover {
       text-decoration: underline;
+    }
+
+    /* Estilos para submenus */
+    nav ul li.submenu .arrow {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      color: #00a0a0;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    nav ul li ul {
+      list-style: none;
+      padding-left: 20px;
+      margin: 10px 0 0 0;
+      display: none;
+    }
+
+    nav ul li.submenu.open ul {
+      display: block;
+    }
+
+    nav ul li ul li {
+      margin: 10px 0;
+    }
+
+    nav ul li ul li a {
+      color: #ccc;
+      font-size: 14px;
+      padding-right: 0; /* Sem padding extra nos subitens */
+    }
+
+    nav ul li ul li a:hover {
+      color: #00a0a0;
     }
 
     /* CONTEÚDO principal */
@@ -266,8 +304,25 @@
       <li><a href="site_inicio.html">Início</a></li>
       <li><a href="site_requisito.html">Requisitos de jogos</a></li>
       <li><a href="#">Teste de desempenho</a></li>
-      <li><a href="#">Computadores ▾</a></li>
-      <li><a href="#">Periféricos ▾</a></li>
+      <li class="submenu" id="computadores-submenu">
+        <a href="computadores.html">Computadores</a>
+        <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+        <ul>
+          <li><a href="computadores_desktops.html">Desktops</a></li>
+          <li><a href="computadores_notebooks.html">Notebooks</a></li>
+          <li><a href="computadores_allin.html">All-in-One</a></li>
+        </ul>
+      </li>
+      <li class="submenu" id="perifericos-submenu">
+        <a href="perifericos.html">Periféricos</a>
+        <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+        <ul>
+          <li><a href="perifericos_teclados.html">Teclados</a></li>
+          <li><a href="perifericos_mouses.html">Mouses</a></li>
+          <li><a href="perifericos_monitores.html">Monitores</a></li>
+          <li><a href="perifericos_headsets.html">Headsets</a></li>
+        </ul>
+      </li>
       <li><a href="#">Monte seu Setup</a></li>
       <li><a href="#">Sobre nós</a></li>
     </ul>
@@ -320,6 +375,18 @@
         menuToggle.click();
       }
     });
+
+    // Função para toggle dos submenus
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      const arrow = submenu.querySelector('.arrow');
+      submenu.classList.toggle('open');
+      if (submenu.classList.contains('open')) {
+        arrow.innerHTML = '▴';
+      } else {
+        arrow.innerHTML = '▾';
+      }
+    }
   </script>
 
 </body>
