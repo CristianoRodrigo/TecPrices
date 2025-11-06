@@ -1,11 +1,221 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Título da Página</title>
-  </head>
-  <body>
-    <h1>Meu valorant</h1>
-    <p>Meu parágrafo.</p>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TecPrices</title>
+
+<style>
+/* todo seu CSS igual o segundo modelo, não removi nada, não alterei nada */
+/*  --------------------  */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: black;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  background-color: gray;
+  padding: 10px 15px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1100;
+}
+
+.menu-toggle {
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  position: relative;
+}
+
+.menu-toggle span {
+  background-color: white;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-radius: 3px;
+  left: 0;
+  transition: 0.3s ease;
+}
+
+.menu-toggle span:nth-child(1) { top: 0; }
+.menu-toggle span:nth-child(2) { top: 8px; }
+.menu-toggle span:nth-child(3) { top: 16px; }
+
+.menu-toggle.open span:nth-child(1) { transform: rotate(45deg); top: 8px; }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: rotate(-45deg); top: 8px; }
+
+header h1 { margin-left: 15px; color: white; font-size:22px; user-select:none; }
+
+/* MENU */
+nav {
+  background-color: gray;
+  position: fixed;
+  top: 50px;
+  left: -220px;
+  width: 200px;
+  height: calc(100% - 50px);
+  padding: 20px;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 1050;
+}
+
+nav.open { left: 0; }
+
+nav ul { list-style:none; margin:0; padding:0; }
+nav ul li { margin:15px 0; position:relative; }
+nav ul li a {
+  color:white;
+  text-decoration: none;
+  font-size:16px;
+  user-select:none;
+  padding-right:20px;
+}
+
+nav ul li a:hover{ color:red; }
+
+nav ul li.submenu .arrow{
+  position:absolute; right:0; top:0; cursor:pointer; color:white; font-size:14px; user-select:none;
+}
+
+nav ul li.submenu .arrow:hover{ color:red; }
+
+nav ul li ul{
+  list-style:none;
+  padding-left:20px;
+  margin:10px 0 0 0;
+  display:none;
+}
+
+nav ul li.submenu.open ul{ display:block; }
+
+nav ul li ul li { margin:10px 0; }
+nav ul li ul li a { color:#ccc; font-size:14px; }
+
+nav ul li ul li a:hover{ color:red; }
+
+/* MAIN */
+main {
+  padding:70px 20px 20px 20px;
+  transition: margin-left 0.3s ease;
+}
+
+main.shifted { margin-left:220px; }
+
+.banner{ width:100%; max-width:100%; margin-bottom:20px; }
+
+h2{ font-size:28px; font-weight:bold; color:red; font-style:italic; margin-bottom:15px; }
+
+hr{ border:0; border-top:1px solid #ccc; margin:30px 0; }
+
+@media (min-width:768px){
+  nav { left:0 !important; }
+  main{ margin-left:220px !important; padding-top:20px; }
+  header .menu-toggle{ display:none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+  <h1>TecPrices</h1>
+</header>
+
+<nav id="side-menu" aria-label="Menu de navegação">
+  <ul>
+    <li><a href="site_inicio.html">Início</a></li>
+    <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+    <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+    <li class="submenu" id="computadores-submenu">
+      <a href="computadores.html">Computadores</a>
+      <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+      <ul>
+        <li><a href="computadores_games.html">Computadores para games</a></li>
+        <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
+        <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+      </ul>
+    </li>
+    <li class="submenu" id="perifericos-submenu">
+      <a href="perifericos.html">Periféricos</a>
+      <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+      <ul>
+        <li><a href="perifericos_teclados.html">Teclados</a></li>
+        <li><a href="perifericos_mouses.html">Mouses</a></li>
+        <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+        <li><a href="perifericos_headsets.html">Headsets</a></li>
+      </ul>
+    </li>
+    <li><a href="monte_setup.html">Monte seu Setup</a></li>
+    <li><a href="sobre_nos.html">Sobre nós</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+  <!-- BANNER IGUAL O NOVO -->
+  <img src="https://i.imgur.com/0Yb7l3m.png" alt="Banner TecPrices" class="banner" />
+
+  <h2>Computador Gamer, qual comprar?</h2>
+  <p>
+    Pensando em PC Gamer, qualquer um sem estudo pode achar que todos que achamos pela internet pode ser um de qualidade, porem na verdade não costuma ser assim, para entendermos o por que de um PC Gamer ter uma configuração boa para ser realmente um Gamer, vamos entender e estudar primeiramente as suas peças para montarmos uma máquina TOP!
+  </p>
+
+  <p>
+    Na prática, a principal vantagem do PC é a liberdade de escolha: você pode decidir construir uma máquina com componentes mais mundanos (e melhorá-la com o tempo)
+  </p>
+
+  <p>
+    E obviamente para o melhor custo benefício, vamos mostrar algumas peças mais limitadas, porém ótimas para uma montagem inicial supimpa!
+  </p>
+
+  <h3 style="color:#e53935; font-size:20px;">Vamos começar pela Memória RAM</h3>
+  <p>
+    Para o seu PC, escolha pelo menos 8 GB de memória RAM. Dependendo do jogo, o uso da CPU é muito exigente e é necessária uma boa memória para atingir altas velocidades.<br>
+    Para plataformas de jogos mais exigentes, a porção de 16 GB é recomendada, mas somente se necessário, caso queira então um pouco mais a baixo, uma de 8GB é melhor do que acabar comprando duas de 4GB.
+  </p>
+
+  <hr />
+
+</main>
+
+<script>
+const menuToggle = document.getElementById('menu-toggle');
+const sideMenu = document.getElementById('side-menu');
+const mainContent = document.getElementById('main-content');
+
+menuToggle.addEventListener('click', ()=>{
+  menuToggle.classList.toggle('open');
+  sideMenu.classList.toggle('open');
+  mainContent.classList.toggle('shifted');
+});
+
+menuToggle.addEventListener('keydown', (e)=>{
+  if(e.key==='Enter' || e.key===' '){
+    e.preventDefault();
+    menuToggle.click();
+  }
+});
+
+function toggleSubmenu(id){
+  const submenu = document.getElementById(id);
+  const arrow = submenu.querySelector('.arrow');
+  submenu.classList.toggle('open');
+  arrow.innerHTML = submenu.classList.contains('open') ? '▴' : '▾';
+}
+</script>
+
+</body>
 </html>
