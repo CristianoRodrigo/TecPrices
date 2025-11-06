@@ -1,11 +1,178 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Título da Página</title>
-  </head>
-  <body>
-    <h1>Meu computador gamer</h1>
-    <p>Meu parágrafo.</p>
-  </body>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computadores - TecPrices</title>
+<style>
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #eee;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* Menu lateral */
+  nav.sidebar {
+    background-color: #2c2c2c;
+    width: 250px;
+    padding: 20px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+  }
+
+  nav.sidebar img.logo {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  nav.sidebar h1 {
+    color: #eee;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  nav.sidebar ul {
+    list-style: none;
+  }
+
+  nav.sidebar ul li {
+    margin-bottom: 10px;
+  }
+
+  nav.sidebar ul li a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  nav.sidebar ul li a:hover {
+    color: #6bbc6b;
+  }
+
+  /* Indicador da página atual */
+  nav.sidebar ul li.selected > a {
+    color: #3abfff;
+    font-weight: bold;
+  }
+
+  /* Submenus */
+  nav.sidebar ul li ul.submenu {
+    margin-top: 5px;
+    margin-left: 15px;
+  }
+  nav.sidebar ul li ul.submenu li {
+    margin-bottom: 8px;
+  }
+
+  /* Conteúdo principal */
+  main.content {
+    margin-left: 270px;
+    padding: 20px 30px;
+    flex-grow: 1;
+    background-color: #333333;
+    overflow-y: auto;
+  }
+
+  header.banner img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  /* Títulos com cores específicas */
+  h2.title-primary {
+    color: #9400D3; /* cor roxa */
+    margin-bottom: 10px;
+  }
+
+  h3.title-secondary {
+    color: #e53935; /* cor vermelha */
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 15px;
+  }
+
+  hr {
+    border: 1px solid #444;
+    margin: 30px 0;
+  }
+</style>
+</head>
+<body>
+  <nav class="sidebar">
+    <img src="https://i.imgur.com/TFzQHLz.png" alt="Logo TecPrices" class="logo" />
+    <h1>TecPrices</h1>
+    <ul>
+      <li><a href="site_inicio.html">Início</a></li>
+      <li><a href="requisitos.html">Requisitos de jogos</a></li>
+      <li><a href="teste.html">Teste de desempenho</a></li>
+      <li class="selected">
+        <a href="#" style="color:#3abfff; font-weight:bold;">Computadores</a>
+        <ul class="submenu">
+          <li><a href="maquinas-games.html">Máquinas Para Games</a></li>
+          <li><a href="maquinas-edicao.html">Máquinas Edição Vídeos/Fotos</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" style="cursor: default;">Periféricos</a>
+        <ul class="submenu">
+          <li><a href="monte-setup.html">Monte seu Setup</a></li>
+          <li><a href="sobre.html">Sobre nós</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <header class="banner">
+      <img src="https://i.imgur.com/oSmzelQ.jpg" alt="Banner Computadores" />
+    </header>
+
+    <h2 class="title-primary">Computador Gamer, qual comprar?</h2>
+    <p>
+      Pensando em PC Gamer, qualquer um sem estudo pode achar que todos que achamos pela internet pode ser um de qualidade, porem na verdade não costuma ser assim, para entendermos o por que de um PC Gamer ter uma configuração boa para ser realmente um Gamer, vamos entender e estudar primeiramente as suas peças para montarmos uma máquina TOP!
+    </p>
+
+    <p>
+      Na prática, a principal vantagem do PC é a liberdade de escolha: você pode decidir construir uma máquina com componentes mais mundanos (e melhorá-la com o tempo)
+    </p>
+
+    <p>
+      E obviamente para o melhor custo benefício, vamos mostrar algumas peças mais limitadas, porém ótimas para uma montagem inicial supimpa!
+    </p>
+
+    <h3 class="title-secondary">Vamos começar pela Memória RAM</h3>
+    <p>
+      Para o seu PC, escolha pelo menos 8 GB de memória RAM. Dependendo do jogo, o uso da CPU é muito exigente e é necessária uma boa memória para atingir altas velocidades.<br />
+      Para plataformas de jogos mais exigentes, a porção de 16 GB é recomendada, mas somente se necessário, caso queira então um pouco mais a baixo, uma de 8GB é melhor do que acabar comprando duas de 4GB.
+    </p>
+
+    <hr />
+    
+    <!-- Exemplo de conteúdo adicional ou cards -->
+
+  </main>
+</body>
 </html>
