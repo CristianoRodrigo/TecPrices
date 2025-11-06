@@ -1,219 +1,479 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Jogos</title>
-    <style>
-        body {
-            background-color: #1e1e1e;
-            color: #eee;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 700px;
-            margin: 30px auto;
-            padding: 0 15px;
-            line-height: 1.5;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jogos</title> <!-- Título mudado para "Jogos" -->
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
 
-        .game {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
-            align-items: flex-start;
-        }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white; /* Fundo branco mantido */
+      color: black; /* Texto preto para legibilidade */
+    }
 
-        .placeholder-image {
-            width: 130px;
-            height: 180px;
-            background-color: #444;
-            border-radius: 6px;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 14px;
-            text-align: center;
-            padding: 10px;
-            user-select: none;
-        }
+    /* HEADER com botão de menu */
+    header {
+      display: flex;
+      align-items: center;
+      background-color: gray; /* Fundo cinza */
+      padding: 10px 15px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1100;
+    }
 
-        .game-info {
-            flex: 1;
-        }
+    /* Ícone hambúrguer */
+    .menu-toggle {
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      position: relative;
+    }
 
-        h2 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 1.35em;
-            color: #f0a500;
-        }
+    .menu-toggle span {
+      background-color: white; /* Branco */
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px;
+      left: 0;
+      transition: 0.3s ease;
+    }
 
-        p {
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 0.95em;
-            color: #ccc;
-        }
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
 
-        .requirements {
-            display: flex;
-            gap: 30px;
-            font-size: 0.9em;
-        }
+    .menu-toggle span:nth-child(2) {
+      top: 8px;
+    }
 
-        .requirements div {
-            flex: 1;
-        }
+    .menu-toggle span:nth-child(3) {
+      top: 16px;
+    }
 
-        .requirements strong {
-            display: block;
-            margin-bottom: 6px;
-            color: #f0a500;
-        }
+    /* Animação para o X */
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 8px;
+    }
 
-        ul {
-            margin: 4px 0 0 18px;
-            padding: 0;
-            color: #bbb;
-        }
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
 
-        ul li {
-            margin-bottom: 4px;
-        }
-    </style>
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 8px;
+    }
+
+    header h1 {
+      margin-left: 15px;
+      color: white; /* Branco */
+      font-size: 22px;
+      user-select: none;
+    }
+
+    /* NAV oculto inicialmente */
+    nav {
+      background-color: gray; /* Fundo cinza */
+      position: fixed;
+      top: 50px;
+      /* altura do header */
+      left: -220px;
+      /* escondido da tela */
+      width: 200px;
+      height: calc(100% - 50px);
+      padding: 20px;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 1050;
+    }
+
+    nav.open {
+      left: 0;
+    }
+
+    nav h1 {
+      color: white; /* Branco */
+      font-size: 24px;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 15px 0;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: white; /* Branco */
+      text-decoration: none;
+      font-size: 16px;
+      user-select: none;
+      padding-right: 20px; /* Espaço para a seta */
+    }
+
+    nav ul li a:hover {
+      color: red; /* Vermelho no hover */
+    }
+
+    /* Estilos para submenus */
+    nav ul li.submenu .arrow {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      color: white; /* Branco */
+      font-size: 14px;
+      user-select: none;
+    }
+
+    nav ul li.submenu .arrow:hover {
+      color: red; /* Vermelho no hover */
+    }
+
+    nav ul li ul {
+      list-style: none;
+      padding-left: 20px;
+      margin: 10px 0 0 0;
+      display: none;
+    }
+
+    nav ul li.submenu.open ul {
+      display: block;
+    }
+
+    nav ul li ul li {
+      margin: 10px 0;
+    }
+
+    nav ul li ul li a {
+      color: #ccc; /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
+      font-size: 14px;
+      padding-right: 0; /* Sem padding extra nos subitens */
+    }
+
+    nav ul li ul li a:hover {
+      color: red; /* Vermelho no hover */
+    }
+
+    /* CONTEÚDO principal */
+    main {
+      padding: 70px 20px 20px 20px;
+      transition: margin-left 0.3s ease;
+      max-width: 700px; /* Limitação de largura para o conteúdo dos jogos */
+      margin: 70px auto 20px auto; /* Centralizado */
+      line-height: 1.5;
+    }
+
+    main.shifted {
+      margin-left: 220px;
+    }
+
+    /* Estilos adaptados do conteúdo dos jogos (ajustados para fundo branco) */
+    .game {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 40px;
+      align-items: flex-start;
+    }
+
+    .placeholder-image {
+      width: 130px;
+      height: 180px;
+      background-color: #ddd; /* Cinza claro para legibilidade no fundo branco */
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666; /* Cinza escuro para o texto */
+      font-size: 14px;
+      text-align: center;
+      padding: 10px;
+      user-select: none;
+    }
+
+    .game-info {
+      flex: 1;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 1.35em;
+      color: red; /* Vermelho para destacar, combinando com o tema */
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 0.95em;
+      color: #333; /* Cinza escuro para legibilidade */
+    }
+
+    .requirements {
+      display: flex;
+      gap: 30px;
+      font-size: 0.9em;
+    }
+
+    .requirements div {
+      flex: 1;
+    }
+
+    .requirements strong {
+      display: block;
+      margin-bottom: 6px;
+      color: red; /* Vermelho para destacar */
+    }
+
+    ul {
+      margin: 4px 0 0 18px;
+      padding: 0;
+      color: #666; /* Cinza escuro */
+    }
+
+    ul li {
+      margin-bottom: 4px;
+    }
+
+    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+    @media (min-width: 768px) {
+      nav {
+        left: 0 !important;
+      }
+
+      main {
+        margin-left: 220px !important;
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
+  <header>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h1>Jogos</h1> <!-- Título do header mudado para "Jogos" -->
+  </header>
+
+  <nav id="side-menu" aria-label="Menu de navegação">
+    <ul>
+      <li><a href="site_inicio.html">Início</a></li>
+      <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+      <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+      <li class="submenu" id="computadores-submenu">
+        <a href="computadores.html">Computadores</a>
+        <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+        <ul>
+          <li><a href="computadores_games.html">Computadores para games</a></li>
+          <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
+          <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+        </ul>
+      </li>
+      <li class="submenu" id="perifericos-submenu">
+        <a href="perifericos.html">Periféricos</a>
+        <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+        <ul>
+          <li><a href="perifericos_teclados.html">Teclados</a></li>
+          <li><a href="perifericos_mouses.html">Mouses</a></li>
+          <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+          <li><a href="perifericos_headsets.html">Headsets</a></li>
+        </ul>
+      </li>
+      <li><a href="monte_setup.html">Monte seu Setup</a></li>
+      <li><a href="sobre_nos.html">Sobre nós</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <!-- Conteúdo dos jogos inserido aqui, com estilos adaptados -->
     <section class="game">
-        <div class="placeholder-image">Imagem<br />The Last of Us Part I</div>
-        <div class="game-info">
-            <h2>The Last of Us Part I (PC)</h2>
-            <p>
-                Este é um jogo original, que pode ser encontrado para PC. Este clássico game pós-apocalíptico, baseado em uma história emocionante de sobrevivência, combate e amizade, agora está em uma nova versão que está causando a maior comoção do ano entre os gamers por sua atmosfera realista, detalhada e sombria.
-            </p>
-            <div class="requirements">
-                <div>
-                    <strong>Requisitos mínimos:</strong>
-                    <ul>
-                        <li>Windows 10 64-bit</li>
-                        <li>Intel i7-4770K ou AMD Ryzen 5 1500X</li>
-                        <li>16 GB RAM</li>
-                        <li>GTX 1060 6GB / RX 580 8GB</li>
-                        <li>100 GB de espaço</li>
-                    </ul>
-                </div>
-                <div>
-                    <strong>Requisitos recomendados:</strong>
-                    <ul>
-                        <li>Windows 11 64-bit</li>
-                        <li>Intel i7-8700K ou AMD Ryzen 7 2700X</li>
-                        <li>32 GB RAM</li>
-                        <li>RTX 2060 Super 8GB / RX 5700 XT 8GB</li>
-                        <li>SSD com 100 GB</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="placeholder-image">Imagem<br />The Last of Us Part I</div>
+      <div class="game-info">
+        <h2>The Last of Us Part I (PC)</h2>
+        <p>
+          Este é um jogo original, que pode ser encontrado para PC. Este clássico game pós-apocalíptico, baseado em uma história emocionante de sobrevivência, combate e amizade, agora está em uma nova versão que está causando a maior comoção do ano entre os gamers por sua atmosfera realista, detalhada e sombria.
+        </p>
+        <div class="requirements">
+          <div>
+            <strong>Requisitos mínimos:</strong>
+            <ul>
+              <li>Windows 10 64-bit</li>
+              <li>Intel i7-4770K ou AMD Ryzen 5 1500X</li>
+              <li>16 GB RAM</li>
+              <li>GTX 1060 6GB / RX 580 8GB</li>
+              <li>100 GB de espaço</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Requisitos recomendados:</strong>
+            <ul>
+              <li>Windows 11 64-bit</li>
+              <li>Intel i7-8700K ou AMD Ryzen 7 2700X</li>
+              <li>32 GB RAM</li>
+              <li>RTX 2060 Super 8GB / RX 5700 XT 8GB</li>
+              <li>SSD com 100 GB</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="game">
-        <div class="placeholder-image">Imagem<br />Counter-Strike 2</div>
-        <div class="game-info">
-            <h2>Counter-Strike 2 (CS2)</h2>
-            <p>
-                Counter-Strike 2 é a versão mais recente do clássico FPS, lançada em 2023. Com melhorias gráficas e sistema atualizado de matchmaking, o jogo globaliza a experiência do CS:GO, sendo um dos mais populares do gênero.
-            </p>
-            <div class="requirements">
-                <div>
-                    <strong>Requisitos mínimos (originais):</strong>
-                    <ul>
-                        <li>Windows 7 32/64 bit</li>
-                        <li>Intel Core 2 Duo E6600 / AMD Phenom X3 8750</li>
-                        <li>2 GB RAM</li>
-                        <li>Vídeo com 256 MB e suporte a DirectX 9</li>
-                        <li>15 GB de espaço</li>
-                    </ul>
-                </div>
-                <div>
-                    <strong>Requisitos recomendados (CS2):</strong>
-                    <ul>
-                        <li>Windows 10 64-bit</li>
-                        <li>Intel Core i5-4460 3.2 GHz / AMD FX-6300</li>
-                        <li>8 GB RAM</li>
-                        <li>GTX 960 2GB / Radeon R7 370 2GB</li>
-                        <li>30 GB de espaço</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="placeholder-image">Imagem<br />Counter-Strike 2</div>
+      <div class="game-info">
+        <h2>Counter-Strike 2 (CS2)</h2>
+        <p>
+          Counter-Strike 2 é a versão mais recente do clássico FPS, lançada em 2023. Com melhorias gráficas e sistema atualizado de matchmaking, o jogo globaliza a experiência do CS:GO, sendo um dos mais populares do gênero.
+        </p>
+        <div class="requirements">
+          <div>
+            <strong>Requisitos mínimos (originais):</strong>
+            <ul>
+              <li>Windows 7 32/64 bit</li>
+              <li>Intel Core 2 Duo E6600 / AMD Phenom X3 8750</li>
+              <li>2 GB RAM</li>
+              <li>Vídeo com 256 MB e suporte a DirectX 9</li>
+              <li>15 GB de espaço</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Requisitos recomendados (CS2):</strong>
+            <ul>
+              <li>Windows 10 64-bit</li>
+              <li>Intel Core i5-4460 3.2 GHz / AMD FX-6300</li>
+              <li>8 GB RAM</li>
+              <li>GTX 960 2GB / Radeon R7 370 2GB</li>
+              <li>30 GB de espaço</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="game">
-        <div class="placeholder-image">Imagem<br />Red Dead Redemption II</div>
-        <div class="game-info">
-            <h2>Red Dead Redemption II</h2>
-            <p>
-                Jogo de faroeste com mundo aberto e narrativa envolvente. Segue Arthur Morgan, um fora-da-lei, enfrentando desafios da época. Conhecido por gráficos impressionantes e jogabilidade detalhada.
-            </p>
-            <div class="requirements">
-                <div>
-                    <strong>Requisitos mínimos:</strong>
-                    <ul>
-                        <li>Windows 7 64-bit SP1</li>
-                        <li>Intel Core i5-2500K / AMD FX-6300</li>
-                        <li>8 GB RAM</li>
-                        <li>GTX 770 2GB / Radeon R9 280 3GB</li>
-                        <li>150 GB de espaço</li>
-                    </ul>
-                </div>
-                <div>
-                    <strong>Requisitos recomendados:</strong>
-                    <ul>
-                        <li>Windows 10 64-bit</li>
-                        <li>Intel i7-4770K / Ryzen 5 1500X</li>
-                        <li>12 GB RAM</li>
-                        <li>GTX 1060 6GB / RX 480 4GB</li>
-                        <li>150 GB de espaço</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="placeholder-image">Imagem<br />Red Dead Redemption II</div>
+      <div class="game-info">
+        <h2>Red Dead Redemption II</h2>
+        <p>
+          Jogo de faroeste com mundo aberto e narrativa envolvente. Segue Arthur Morgan, um fora-da-lei, enfrentando desafios da época. Conhecido por gráficos impressionantes e jogabilidade detalhada.
+        </p>
+        <div class="requirements">
+          <div>
+            <strong>Requisitos mínimos:</strong>
+            <ul>
+              <li>Windows 7 64-bit SP1</li>
+              <li>Intel Core i5-2500K / AMD FX-6300</li>
+              <li>8 GB RAM</li>
+              <li>GTX 770 2GB / Radeon R9 280 3GB</li>
+              <li>150 GB de espaço</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Requisitos recomendados:</strong>
+            <ul>
+              <li>Windows 10 64-bit</li>
+              <li>Intel i7-4770K / Ryzen 5 1500X</li>
+              <li>12 GB RAM</li>
+              <li>GTX 1060 6GB / RX 480 4GB</li>
+              <li>150 GB de espaço</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="game">
-        <div class="placeholder-image">Imagem<br />Rocket League</div>
-        <div class="game-info">
-            <h2>Rocket League</h2>
-            <p>
-                Futebol com carros em partidas multiplayer rápidas. Combina esportes com veículos propulsados por foguetes, jogabilidade vibrante e divertida.
-            </p>
-            <div class="requirements">
-                <div>
-                    <strong>Requisitos mínimos:</strong>
-                    <ul>
-                        <li>Windows 7 64-bit ou superior</li>
-                        <li>2.5 GHz Dual Core</li>
-                        <li>4 GB RAM</li>
-                        <li>GTX 760 / Radeon R7 270X ou superior</li>
-                        <li>20 GB de espaço</li>
-                    </ul>
-                </div>
-                <div>
-                    <strong>Requisitos recomendados:</strong>
-                    <ul>
-                        <li>Windows 10 64-bit ou superior</li>
-                        <li>3.0 GHz Quad Core i5 / Ryzen 5</li>
-                        <li>8 GB RAM</li>
-                        <li>GTX 1060 / RX 580</li>
-                        <li>20 GB de espaço</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="placeholder-image">Imagem<br />Rocket League</div>
+      <div class="game-info">
+        <h2>Rocket League</h2>
+        <p>
+          Futebol com carros em partidas multiplayer rápidas. Combina esportes com veículos propulsados por foguetes, jogabilidade vibrante e divertida.
+        </p>
+        <div class="requirements">
+          <div>
+            <strong>Requisitos mínimos:</strong>
+            <ul>
+              <li>Windows 7 64-bit ou superior</li>
+              <li>2.5 GHz Dual Core</li>
+              <li>4 GB RAM</li>
+              <li>GTX 760 / Radeon R7 270X ou superior</li>
+              <li>20 GB de espaço</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Requisitos recomendados:</strong>
+            <ul>
+              <li>Windows 10 64-bit ou superior</li>
+              <li>3.0 GHz Quad Core i5 / Ryzen 5</li>
+              <li>8 GB RAM</li>
+              <li>GTX 1060 / RX 580</li>
+              <li>20 GB de espaço</li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sideMenu = document.getElementById('side-menu');
+    const mainContent = document.getElementById('main-content');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      sideMenu.classList.toggle('open');
+      mainContent.classList.toggle('shifted');
+    });
+
+    // Permitir abrir menu pelo teclado (Enter / Espaço)
+    menuToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
+
+    // Função para toggle dos submenus
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      const arrow = submenu.querySelector('.arrow');
+      submenu.classList.toggle('open');
+      if (submenu.classList.contains('open')) {
+        arrow.innerHTML = '▴';
+      } else {
+        arrow.innerHTML = '▾';
+      }
+    }
+  </script>
 
 </body>
 
