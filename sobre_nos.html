@@ -1,11 +1,276 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Título da Página</title>
-  </head>
-  <body>
-    <h1>Meu mundo</h1>
-    <p>Meu parágrafo.</p>
-  </body>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TecPrices Unisal - Sobre nós</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    /* ===== ナビバー ===== */
+    header {
+      background-color: #1e1e1e;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+    }
+
+    /* Dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 180px;
+      top: 40px;
+      left: 0;
+    }
+
+    .dropdown-content li a {
+      padding: 10px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* ハンバーガーボタン */
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #1e1e1e;
+        width: 100%;
+      }
+
+      .nav-links li a {
+        border-top: 1px solid #333;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .dropdown:hover .dropdown-content {
+        position: static;
+        display: none;
+      }
+
+      .dropdown.open .dropdown-content {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    /* ===== コンテンツ部分 ===== */
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #222;
+    }
+
+    h2 {
+      color: #333;
+      margin-top: 30px;
+    }
+
+    p {
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    footer {
+      background-color: #1e1e1e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== ナビバー ===== -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">TecPrices</div>
+      <button class="menu-toggle" id="menu-toggle">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Requisitos de jogos</a></li>
+        <li><a href="#">Teste de desempenho</a></li>
+        <li class="dropdown">
+          <a href="#">Computadores ▾</a>
+          <ul class="dropdown-content">
+            <li><a href="#">Máquinas Para Games</a></li>
+            <li><a href="#">Máquinas Edição Vídeos/Fotos</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Periféricos</a></li>
+        <li><a href="#">Sobre nós</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== メインコンテンツ ===== -->
+  <main>
+    <h1>Sobre nós</h1>
+
+    <h2>Quem nós somos?</h2>
+    <p>
+      Somos um grupo pequeno de estudantes trabalhando na área de informática sobre um site que ajudará pessoas a
+      consumirem hardwares de cada área de seus interesses. Grupo formado por:
+      <strong>Arthur Lacerda, Cristiano Rodrigo, Gabriel Martins, João Fratia, Thiago Mantonari e Vinícius
+        Araújo.</strong>
+    </p>
+
+    <p>
+      Nos últimos anos, a tecnologia avançou rapidamente, e os componentes de hardware dos computadores desempenham um
+      papel crucial nesse processo. Desde os primeiros jogos, como <em>Computer Space</em> de 1971, até os jogos 3D
+      modernos, os computadores precisaram evoluir para acompanhar a crescente demanda por gráficos e desempenho. No
+      Brasil, a pandemia acelerou o uso de plataformas online, fazendo com que a necessidade de computadores aumentasse,
+      não só para o trabalho e estudos, mas também para o lazer digital — especialmente entre os jovens.
+    </p>
+
+    <p>
+      Contudo, muitos adolescentes e jovens adultos, apesar de estarem conectados ao mundo digital, ainda enfrentam
+      dificuldades ao escolher o computador ideal para suas necessidades. Isso ocorre principalmente por falta de
+      conhecimento técnico, o que pode levá-los a adquirir equipamentos mais caros ou simples demais, gerando dúvidas e
+      frustrações na hora da compra.
+    </p>
+
+    <p>
+      Este projeto tem como objetivo explicar, de maneira simples, visual e acessível, como os componentes de hardware
+      evoluíram ao longo do tempo — desde os primeiros computadores até os modernos consoles e PCs de alto desempenho. A
+      proposta é criar um site educativo voltado principalmente para o público jovem, que deseja entender melhor como
+      funcionam as partes de um computador e como montar ou melhorar suas máquinas, seja para jogos, estudos, criação de
+      conteúdo ou uso cotidiano.
+    </p>
+
+    <p>
+      Além disso, o site permitirá comparar diferentes tipos de hardware e oferecerá dicas de upgrades que podem
+      melhorar
+      significativamente o desempenho dos dispositivos. Tudo isso será apresentado com linguagem clara, recursos visuais
+      e exemplos práticos, aproximando os jovens do universo da tecnologia de forma didática e interessante.
+    </p>
+
+    <p>
+      A justificativa para a criação deste site está em oferecer uma solução prática e acessível para jovens que têm
+      interesse por tecnologia, mas não possuem o conhecimento necessário para tomar decisões conscientes sobre seus
+      dispositivos. Ao fornecer informações simples e diretas sobre como escolher um computador e identificar as
+      configurações ideais para cada tipo de uso, o projeto busca ajudar esse público a evitar gastos desnecessários e
+      ter uma melhor experiência com seus equipamentos. O site também trará atualizações sobre boas ofertas no mercado,
+      contribuindo para que os jovens encontrem as melhores opções sem gastar além do necessário.
+    </p>
+
+    <h2>ODS</h2>
+    <p>
+      O site tem como objetivo principal educar os jovens sobre os componentes de hardware de forma simples e acessível,
+      ajudando-os a entender melhor como funcionam os computadores e como fazer boas escolhas ao adquirir um. Isso
+      promove a inclusão digital e fortalece o acesso à educação tecnológica, alinhando-se à meta de garantir uma
+      educação de qualidade para todos.
+    </p>
+
+    <p>
+      Ao incentivar o conhecimento sobre tecnologia e a escolha consciente de equipamentos, o projeto estimula o uso
+      mais
+      eficiente e sustentável da infraestrutura tecnológica existente. Isso contribui para o desenvolvimento da inovação
+      entre os jovens e prepara futuras gerações para atuar em setores ligados à tecnologia.
+    </p>
+
+    <p>
+      Muitas pessoas, especialmente jovens com pouco acesso à informação técnica, enfrentam dificuldades ao comprar ou
+      montar um computador. O site ajuda a democratizar o acesso ao conhecimento tecnológico, diminuindo as
+      desigualdades
+      no entendimento e no consumo consciente de produtos tecnológicos.
+    </p>
+
+    <p>
+      Ao oferecer dicas de compra, comparação de peças e sugestões de upgrades, o site ajuda os usuários a evitarem
+      gastos desnecessários e o descarte precoce de equipamentos, promovendo o consumo mais consciente e sustentável de
+      tecnologia.
+    </p>
+  </main>
+
+  <!-- ===== フッター ===== -->
+  <footer>
+    © 2025 TecPrices UNISAL - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    toggleBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    dropdowns.forEach(drop => {
+      drop.addEventListener('click', () => {
+        drop.classList.toggle('open');
+      });
+    });
+  </script>
+
+</body>
+
 </html>
