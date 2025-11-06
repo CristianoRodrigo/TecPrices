@@ -1,11 +1,282 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Título da Página</title>
-  </head>
-  <body>
-    <h1>Meu mundo</h1>
-    <p>Meu parágrafo.</p>
-  </body>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TecPrices - Periféricos</title>
+
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Corpo da página */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #2b2b2b; /* Fundo muito escuro */
+      color: #ddd;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Menu lateral */
+    nav {
+      background-color: #222222; /* Fundo cinza escuro */
+      width: 220px;
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    nav h1 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    nav ul li {
+      margin-bottom: 1.1rem;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      padding-left: 10px;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #75b79e; /* Verde azulado */
+    }
+
+    /* Submenus */
+    nav ul li.submenu > a {
+      font-weight: 600;
+      cursor: pointer;
+      padding-right: 25px;
+      position: relative;
+      color: #ccc;
+    }
+
+    nav ul li.submenu > .arrow {
+      position: absolute;
+      right: 8px;
+      top: 3px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #ccc;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    nav ul li.submenu > .arrow:hover {
+      color: #75b79e;
+    }
+
+    nav ul li.submenu ul {
+      list-style: none;
+      margin-top: 6px;
+      margin-left: 15px;
+      display: none;
+    }
+
+    nav ul li.submenu.open ul {
+      display: block;
+    }
+
+    nav ul li.submenu ul li a {
+      font-size: 0.9rem;
+      color: #999;
+      padding-left: 15px;
+      margin-bottom: 0.6rem;
+    }
+
+    nav ul li.submenu ul li a:hover {
+      color: #75b79e;
+    }
+
+    /* Conteúdo principal */
+    main {
+      margin-left: 220px;
+      padding: 20px 30px;
+      flex-grow: 1;
+      overflow-y: auto;
+      background-color: #2b2b2b; /* Fundo escuro da página */
+      min-height: 100vh;
+      color: #ddd;
+    }
+
+    /* Grade para periféricos */
+    .perifericos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 25px 20px;
+    }
+
+    .periferico-item {
+      background-color: #fff;
+      color: #222;
+      border-radius: 6px;
+      padding: 10px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 350px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .periferico-item:hover {
+      box-shadow: 0 0 15px #75b79eAA;
+    }
+
+    .periferico-item img {
+      max-width: 180px;
+      max-height: 180px;
+      object-fit: contain;
+      margin-bottom: 12px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+
+    .periferico-item .nome {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+      height: 50px;
+      overflow: hidden;
+      line-height: 1.15em;
+    }
+  </style>
+</head>
+
+<body>
+  <nav aria-label="Menu principal TecPrices">
+    <h1>TecPrices</h1>
+    <ul>
+      <li><a href="site_inicio.html">Início</a></li>
+      <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+      <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+
+      <li class="submenu" id="submenu-computadores">
+        <a href="computadores.html" tabindex="0">Computadores</a>
+        <span class="arrow" onclick="toggleSubmenu('submenu-computadores')" aria-label="Expandir submenu Computadores" tabindex="0"
+          role="button">▾</span>
+        <ul>
+          <li><a href="computadores_games.html">Computadores para games</a></li>
+          <li><a href="computadores_edicao.html">Computadores para edição Vídeos/Fotos</a></li>
+          <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+        </ul>
+      </li>
+
+      <li class="submenu open" id="submenu-perifericos">
+        <a href="perifericos.html" tabindex="0" style="color:#75b79e;">Periféricos</a>
+        <span class="arrow" onclick="toggleSubmenu('submenu-perifericos')" aria-label="Expandir submenu Periféricos" tabindex="0"
+          role="button">▾</span>
+        <ul style="display: block;">
+          <li><a href="perifericos_teclados.html">Teclados</a></li>
+          <li><a href="perifericos_mouses.html">Mouses</a></li>
+          <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+          <li><a href="perifericos_headsets.html">Headsets</a></li>
+        </ul>
+      </li>
+
+      <li><a href="monte_setup.html">Monte seu Setup</a></li>
+      <li><a href="sobre_nos.html">Sobre nós</a></li>
+    </ul>
+  </nav>
+
+  <main role="main" id="main-content" tabindex="-1">
+    <div class="perifericos-grid">
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 1" />
+        <div class="nome">Nome do Periférico 1</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 2" />
+        <div class="nome">Nome do Periférico 2</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 3" />
+        <div class="nome">Nome do Periférico 3</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 4" />
+        <div class="nome">Nome do Periférico 4</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 5" />
+        <div class="nome">Nome do Periférico 5</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 6" />
+        <div class="nome">Nome do Periférico 6</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 7" />
+        <div class="nome">Nome do Periférico 7</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 8" />
+        <div class="nome">Nome do Periférico 8</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 9" />
+        <div class="nome">Nome do Periférico 9</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 10" />
+        <div class="nome">Nome do Periférico 10</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.classList.toggle('open');
+
+      const arrow = submenu.querySelector('.arrow');
+      if (submenu.classList.contains('open')) {
+        arrow.textContent = '▴';
+        submenu.querySelector('ul').style.display = 'block';
+      } else {
+        arrow.textContent = '▾';
+        submenu.querySelector('ul').style.display = 'none';
+      }
+    }
+
+    // Para acessibilidade com teclas no ícone de seta
+    document.querySelectorAll('nav .arrow').forEach(arrow => {
+      arrow.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          this.click();
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>
