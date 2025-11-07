@@ -1,11 +1,309 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Título da Página</title>
-  </head>
-  <body>
-    <h1>Meu mundo</h1>
-    <p>Meu parágrafo.</p>
-  </body>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TecPrices - Mouses</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #2b2b2b; /* Fundo preto escuro */
+      color: #ddd;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Menu lateral */
+    nav {
+      background-color: #222222; /* cinza escuro */
+      width: 220px;
+      padding: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      overflow-y: auto;
+      user-select: none;
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    nav h1 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    nav ul li {
+      margin-bottom: 1.1rem;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      padding-left: 10px;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #75b79e;
+    }
+
+    /* Submenus */
+    nav ul li.submenu > a {
+      font-weight: 600;
+      cursor: pointer;
+      padding-right: 25px;
+      position: relative;
+      color: #ccc;
+    }
+
+    nav ul li.submenu > .arrow {
+      position: absolute;
+      right: 8px;
+      top: 3px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #ccc;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    nav ul li.submenu > .arrow:hover {
+      color: #75b79e;
+    }
+
+    nav ul li.submenu ul {
+      list-style: none;
+      margin-top: 6px;
+      margin-left: 15px;
+      display: none;
+    }
+
+    nav ul li.submenu.open ul {
+      display: block;
+    }
+
+    nav ul li.submenu ul li a {
+      font-size: 0.9rem;
+      color: #999;
+      padding-left: 15px;
+      margin-bottom: 0.6rem;
+    }
+
+    nav ul li.submenu ul li a:hover,
+    nav ul li.submenu ul li a.active {
+      color: #75b79e;
+    }
+
+    /* Conteúdo principal */
+    main {
+      margin-left: 220px;
+      padding: 20px 30px;
+      flex-grow: 1;
+      background-color: #2b2b2b;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    /* Banner MOUSSES */
+    .banner {
+      width: 100%;
+      height: 130px;
+      background: url('https://i.imgur.com/fFzO7sT.jpg') center center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      position: relative;
+      color: rgba(255,255,255,0.15);
+      font-size: 7rem;
+      font-weight: 900;
+      letter-spacing: 15px;
+      user-select: none;
+      text-shadow: 2px 2px 5px #000a;
+    }
+
+    /* Grid para imagens */
+    .perifericos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    /* Cartão só imagem */
+    .periferico-item {
+      background-color: #fff;
+      border-radius: 6px;
+      padding: 15px;
+      min-height: 220px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.12);
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .periferico-item:hover {
+      box-shadow: 0 0 15px #75b79eAA;
+    }
+
+    .periferico-item img {
+      max-width: 180px;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav aria-label="Menu principal TecPrices">
+    <h1>TecPrices</h1>
+    <ul>
+      <li><a href="site_inicio.html">Início</a></li>
+      <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+      <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+
+      <li class="submenu" id="submenu-computadores">
+        <a href="computadores.html" tabindex="0">Computadores</a>
+        <span class="arrow" onclick="toggleSubmenu('submenu-computadores')" aria-label="Expandir submenu Computadores" tabindex="0" role="button">▾</span>
+        <ul>
+          <li><a href="computadores_games.html">Computadores para games</a></li>
+          <li><a href="computadores_edicao.html">Computadores para edição Vídeos/Fotos</a></li>
+          <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+        </ul>
+      </li>
+
+      <li class="submenu open" id="submenu-perifericos">
+        <a href="perifericos.html" style="color:#75b79e;" tabindex="0">Periféricos</a>
+        <span class="arrow" onclick="toggleSubmenu('submenu-perifericos')" aria-label="Expandir submenu Periféricos" tabindex="0" role="button">▾</span>
+        <ul style="display: block;">
+          <li><a href="perifericos_teclados.html">Teclados</a></li>
+          <li><a href="perifericos_mouses.html" class="active">Mouses</a></li>
+          <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+          <li><a href="perifericos_headsets.html">Headsets</a></li>
+        </ul>
+      </li>
+
+      <li><a href="monte_setup.html">Monte seu Setup</a></li>
+      <li><a href="sobre_nos.html">Sobre nós</a></li>
+    </ul>
+  </nav>
+
+  <main role="main" id="main-content" tabindex="-1">
+
+    <div class="banner" aria-hidden="true">MOUSSES</div>
+
+    <div class="perifericos-grid">
+      <!-- Itens só com imagem, sem nome e preço -->
+      <div class="periferico-item" tabindex="0">
+        <img src="https://a-static.mlcdn.com.br/1500x1500/mouse-sem-fio-ms200-usb-1200dpi-3-botoes-design-ergonomico-preto-multi-mo251/magazineluiza/218013700/3acc9e3424f8bec0cc1e1245957d1327.jpg"
+          alt="Mouse 1" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/292963/mouse-gamer-fortrek-g-crusader-rgb-6-botoes-7200dpi-70526_1604086117_gg.jpg"
+          alt="Mouse 2" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/104983/mouse-sem-fio-logitech-m170-preto_1648507915_gg.jpg"
+          alt="Mouse 3" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/215259/mouse-hp-sem-fio-x200-oman-preto_1663294663_gg.jpg"
+          alt="Mouse 4" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/157847/mouse-gamer-redragon-lockat-l720-rgb-preto_1641604310_gg.jpg"
+          alt="Mouse 5" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/153715/mouse-gamer-redragon-m592-preto_1634882046_gg.jpg"
+          alt="Mouse 6" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/145243/mouse-gamer-onyx-4d-preto-mox050_1628499047_gg.jpg"
+          alt="Mouse 7" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/150322/mouse-gamer-havit-ms1001-preto-rgb-7-botoes-led-7200-dpi-ms1001-havit_1641440589_gg.jpg"
+          alt="Mouse 8" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/225194/mouse-gamer-logitech-g185-6-botoes-rgb-preto_1670397970_gg.jpg"
+          alt="Mouse 9" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/156956/mouse-gamer-logitech-g502-hero-hero-geracao-1-com-fio-preto_1641439630_gg.jpg"
+          alt="Mouse 10" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/228758/mouse-gamer-logitech-g502-lightspeed-wired-preto_1673988351_gg.jpg"
+          alt="Mouse 11" />
+      </div>
+
+      <div class="periferico-item" tabindex="0">
+        <img src="https://images.kabum.com.br/produtos/fotos/205414/mouse-gamer-logitech-g203-lightsync-rgb-preto_1656022521_gg.jpg"
+          alt="Mouse 12" />
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      submenu.classList.toggle('open');
+
+      const arrow = submenu.querySelector('.arrow');
+      if (submenu.classList.contains('open')) {
+        arrow.textContent = '▴';
+        submenu.querySelector('ul').style.display = 'block';
+      } else {
+        arrow.textContent = '▾';
+        submenu.querySelector('ul').style.display = 'none';
+      }
+    }
+
+    document.querySelectorAll('nav .arrow').forEach(arrow => {
+      arrow.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          this.click();
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>
