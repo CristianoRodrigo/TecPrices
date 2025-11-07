@@ -1,309 +1,188 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TecPrices - Mouses</title>
-  <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TecPrices - Mouses</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #2b2b2b; /* Fundo preto escuro */
-      color: #ddd;
-      display: flex;
-      min-height: 100vh;
-    }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #2f2f2f;
+    color: #ccc;
+    display: flex;
+  }
 
-    /* Menu lateral */
-    nav {
-      background-color: #222222; /* cinza escuro */
-      width: 220px;
-      padding: 20px 15px;
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      overflow-y: auto;
-      user-select: none;
-      color: #ccc;
-      font-size: 1rem;
-    }
+  nav {
+    background-color: #1a1a1a;
+    width: 220px;
+    height: 100vh;
+    padding: 1em;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.8);
+  }
 
-    nav h1 {
-      color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
+  nav h1 {
+    margin-bottom: 2em;
+    color: #fff;
+    font-weight: normal;
+    font-size: 1.4em;
+  }
 
-    nav ul {
-      list-style: none;
-      padding-left: 0;
-    }
+  nav ul { list-style: none; }
 
-    nav ul li {
-      margin-bottom: 1.1rem;
-      position: relative;
-    }
+  nav ul li { margin-bottom: 1em; }
 
-    nav ul li a {
-      color: #ccc;
-      text-decoration: none;
-      padding-left: 10px;
-      display: block;
-      transition: color 0.3s ease;
-    }
+  nav ul li a {
+    color: #7dbb9d;
+    text-decoration: none;
+    font-size: 0.9em;
+  }
 
-    nav ul li a:hover,
-    nav ul li a.active {
-      color: #75b79e;
-    }
+  nav ul li a:hover { color: #3bb33b; }
 
-    /* Submenus */
-    nav ul li.submenu > a {
-      font-weight: 600;
-      cursor: pointer;
-      padding-right: 25px;
-      position: relative;
-      color: #ccc;
-    }
+  main {
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
 
-    nav ul li.submenu > .arrow {
-      position: absolute;
-      right: 8px;
-      top: 3px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #ccc;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
+  header { margin-bottom: 20px; }
 
-    nav ul li.submenu > .arrow:hover {
-      color: #75b79e;
-    }
+  header h2 {
+    font-size: 5em;
+    color: rgba(200,200,200,0.15);
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: 10px;
+    font-family: 'Impact', Arial, sans-serif;
+  }
 
-    nav ul li.submenu ul {
-      list-style: none;
-      margin-top: 6px;
-      margin-left: 15px;
-      display: none;
-    }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    gap: 20px;
+  }
 
-    nav ul li.submenu.open ul {
-      display: block;
-    }
+  .product {
+    background: #fff;
+    color: #222;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.35);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
 
-    nav ul li.submenu ul li a {
-      font-size: 0.9rem;
-      color: #999;
-      padding-left: 15px;
-      margin-bottom: 0.6rem;
-    }
+  .product:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 18px rgba(0,0,0,0.45);
+  }
 
-    nav ul li.submenu ul li a:hover,
-    nav ul li.submenu ul li a.active {
-      color: #75b79e;
-    }
+  .product img {
+    max-width: 160px;
+    margin-bottom: 10px;
+  }
 
-    /* Conteúdo principal */
-    main {
-      margin-left: 220px;
-      padding: 20px 30px;
-      flex-grow: 1;
-      background-color: #2b2b2b;
-      min-height: 100vh;
-      overflow-y: auto;
-    }
+  .product .name {
+    font-weight: bold;
+    font-size: 0.85em;
+    margin-bottom: 4px;
+    color: #222;
+    text-align: center;
+  }
 
-    /* Banner MOUSSES */
-    .banner {
-      width: 100%;
-      height: 130px;
-      background: url('https://i.imgur.com/fFzO7sT.jpg') center center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 25px;
-      position: relative;
-      color: rgba(255,255,255,0.15);
-      font-size: 7rem;
-      font-weight: 900;
-      letter-spacing: 15px;
-      user-select: none;
-      text-shadow: 2px 2px 5px #000a;
-    }
-
-    /* Grid para imagens */
-    .perifericos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 25px;
-    }
-
-    /* Cartão só imagem */
-    .periferico-item {
-      background-color: #fff;
-      border-radius: 6px;
-      padding: 15px;
-      min-height: 220px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.12);
-      transition: box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .periferico-item:hover {
-      box-shadow: 0 0 15px #75b79eAA;
-    }
-
-    .periferico-item img {
-      max-width: 180px;
-      max-height: 180px;
-      object-fit: contain;
-      border-radius: 4px;
-    }
-  </style>
+  .product .desc {
+    font-size: 0.75em;
+    color: #555;
+    text-align: center;
+  }
+</style>
 </head>
-
 <body>
-  <nav aria-label="Menu principal TecPrices">
-    <h1>TecPrices</h1>
-    <ul>
-      <li><a href="site_inicio.html">Início</a></li>
-      <li><a href="site_requisito.html">Requisitos de jogos</a></li>
-      <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
 
-      <li class="submenu" id="submenu-computadores">
-        <a href="computadores.html" tabindex="0">Computadores</a>
-        <span class="arrow" onclick="toggleSubmenu('submenu-computadores')" aria-label="Expandir submenu Computadores" tabindex="0" role="button">▾</span>
-        <ul>
-          <li><a href="computadores_games.html">Computadores para games</a></li>
-          <li><a href="computadores_edicao.html">Computadores para edição Vídeos/Fotos</a></li>
-          <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+<nav>
+  <h1>TecPrices</h1>
+  <ul>
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Requisitos de jogos</a></li>
+    <li><a href="#">Teste de desempenho</a></li>
+    <li>
+      <details open>
+        <summary style="color: #ccc; cursor:pointer;">Computadores</summary>
+      </details>
+    </li>
+    <li>
+      <details open>
+        <summary style="color: #ccc; cursor:pointer;">Periféricos</summary>
+        <ul style="margin-left: 15px;">
+          <li><a href="#" style="color:#7dbb9d;">Teclados</a></li>
+          <li><a href="#" style="color:#3bb33b;">Mouses</a></li>
+          <li><a href="#" style="color:#7dbb9d;">Mousepads</a></li>
+          <li><a href="#" style="color:#7dbb9d;">Headsets</a></li>
         </ul>
-      </li>
+      </details>
+    </li>
+    <li><a href="#" style="color:#ccc;">Monte seu Setup</a></li>
+    <li><a href="#" style="color:#ccc;">Sobre nós</a></li>
+  </ul>
+</nav>
 
-      <li class="submenu open" id="submenu-perifericos">
-        <a href="perifericos.html" style="color:#75b79e;" tabindex="0">Periféricos</a>
-        <span class="arrow" onclick="toggleSubmenu('submenu-perifericos')" aria-label="Expandir submenu Periféricos" tabindex="0" role="button">▾</span>
-        <ul style="display: block;">
-          <li><a href="perifericos_teclados.html">Teclados</a></li>
-          <li><a href="perifericos_mouses.html" class="active">Mouses</a></li>
-          <li><a href="perifericos_mousepads.html">Mousepads</a></li>
-          <li><a href="perifericos_headsets.html">Headsets</a></li>
-        </ul>
-      </li>
+<main>
+  <header>
+    <h2>MOUSES</h2>
+  </header>
 
-      <li><a href="monte_setup.html">Monte seu Setup</a></li>
-      <li><a href="sobre_nos.html">Sobre nós</a></li>
-    </ul>
-  </nav>
+  <div class="gallery">
 
-  <main role="main" id="main-content" tabindex="-1">
-
-    <div class="banner" aria-hidden="true">MOUSSES</div>
-
-    <div class="perifericos-grid">
-      <!-- Itens só com imagem, sem nome e preço -->
-      <div class="periferico-item" tabindex="0">
-        <img src="https://a-static.mlcdn.com.br/1500x1500/mouse-sem-fio-ms200-usb-1200dpi-3-botoes-design-ergonomico-preto-multi-mo251/magazineluiza/218013700/3acc9e3424f8bec0cc1e1245957d1327.jpg"
-          alt="Mouse 1" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/292963/mouse-gamer-fortrek-g-crusader-rgb-6-botoes-7200dpi-70526_1604086117_gg.jpg"
-          alt="Mouse 2" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/104983/mouse-sem-fio-logitech-m170-preto_1648507915_gg.jpg"
-          alt="Mouse 3" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/215259/mouse-hp-sem-fio-x200-oman-preto_1663294663_gg.jpg"
-          alt="Mouse 4" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/157847/mouse-gamer-redragon-lockat-l720-rgb-preto_1641604310_gg.jpg"
-          alt="Mouse 5" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/153715/mouse-gamer-redragon-m592-preto_1634882046_gg.jpg"
-          alt="Mouse 6" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/145243/mouse-gamer-onyx-4d-preto-mox050_1628499047_gg.jpg"
-          alt="Mouse 7" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/150322/mouse-gamer-havit-ms1001-preto-rgb-7-botoes-led-7200-dpi-ms1001-havit_1641440589_gg.jpg"
-          alt="Mouse 8" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/225194/mouse-gamer-logitech-g185-6-botoes-rgb-preto_1670397970_gg.jpg"
-          alt="Mouse 9" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/156956/mouse-gamer-logitech-g502-hero-hero-geracao-1-com-fio-preto_1641439630_gg.jpg"
-          alt="Mouse 10" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/228758/mouse-gamer-logitech-g502-lightspeed-wired-preto_1673988351_gg.jpg"
-          alt="Mouse 11" />
-      </div>
-
-      <div class="periferico-item" tabindex="0">
-        <img src="https://images.kabum.com.br/produtos/fotos/205414/mouse-gamer-logitech-g203-lightsync-rgb-preto_1656022521_gg.jpg"
-          alt="Mouse 12" />
-      </div>
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/120428/mouse-sem-fio-ms200-usb-1200dpi-3-botoes-design-ergonomico-preto-multi-mo251_1644284138_gg.jpg" alt="">
+      <div class="name">Mouse Sem Fio MS200 USB 1200dpi 3 Botões Design Ergonômico Preto Multi - MO251</div>
     </div>
 
-  </main>
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/156675/mouse-gamer-fortrek-g-crusader-rgb-6-botoes-7200dpi-70526_1681359719_gg.jpg" alt="">
+      <div class="name">Mouse Gamer Fortrsek G Crusader, RGB, 6 Botões, 7200DPI - 70526</div>
+    </div>
 
-  <script>
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(id);
-      submenu.classList.toggle('open');
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/91316/mouse-sem-fio-logitech-m170-preto_1565711109_gg.jpg" alt="">
+      <div class="name">Mouse sem fio Logitech M170 - Preto</div>
+    </div>
 
-      const arrow = submenu.querySelector('.arrow');
-      if (submenu.classList.contains('open')) {
-        arrow.textContent = '▴';
-        submenu.querySelector('ul').style.display = 'block';
-      } else {
-        arrow.textContent = '▾';
-        submenu.querySelector('ul').style.display = 'none';
-      }
-    }
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/102989/mouse-hp-sem-fio-x200-oman-preto_1677799139_gg.jpg" alt="">
+      <div class="name">Mouse HP sem fio X200 Oman Preto</div>
+    </div>
 
-    document.querySelectorAll('nav .arrow').forEach(arrow => {
-      arrow.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          this.click();
-        }
-      });
-    });
-  </script>
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/139088/mouse-gamer-hp-sensor-avago-3050-6-botoes-4000-dpi-g200_1656899490_gg.jpg" alt="">
+      <div class="name">Mouse Gamer HP Sensor Avago 3050, 6 Botões, 4000 DPI - G200</div>
+    </div>
+
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/155250/mouse-gamer-logitech-g203-lightsync-rgb-efeito-de-ondas-de-cores-6-botoes-programaveis-e-ate-8-000-dpi-preto-910-005793_1672952272_gg.jpg" alt="">
+      <div class="name">Mouse Gamer Logitech G203 LIGHTSYNC RGB, 6 Botões Programáveis, até 8.000 DPI - Preto</div>
+    </div>
+
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/158798/mouse-para-jogo-steelseries-rival-3-62513-preto_1685043748_gg.jpg" alt="">
+      <div class="name">Mouse para jogo SteelSeries Rival 3 62513 Preto</div>
+    </div>
+
+    <div class="product">
+      <img src="https://images.kabum.com.br/produtos/fotos/121891/mouse-corsair-harpoon-pro-rgb-r6-12000-dpi-ch-9301111-na_1649676439_gg.jpg" alt="">
+      <div class="name">Mouse Corsair Harpoon Pro RGB R6 12000 DPI - CH-9301111-NA</div>
+    </div>
+
+  </div>
+</main>
 </body>
-
 </html>
