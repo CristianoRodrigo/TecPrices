@@ -1,147 +1,295 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TecPrices - Mouses</title>
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #2f2f2f;
-    color: #ccc;
-    display: flex;
-  }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: black;
+}
 
+/* HEADER com botão de menu */
+header {
+  display: flex;
+  align-items: center;
+  background-color: gray;
+  padding: 10px 15px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1100;
+}
+
+/* Ícone hambúrguer */
+.menu-toggle {
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  position: relative;
+}
+
+.menu-toggle span {
+  background-color: white;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-radius: 3px;
+  left: 0;
+  transition: 0.3s ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 0;
+}
+
+.menu-toggle span:nth-child(2) {
+  top: 8px;
+}
+
+.menu-toggle span:nth-child(3) {
+  top: 16px;
+}
+
+/* Animação para o X */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 8px;
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 8px;
+}
+
+header h1 {
+  margin-left: 15px;
+  color: white;
+  font-size: 22px;
+  user-select: none;
+}
+
+/* NAV oculto inicialmente */
+nav {
+  background-color: gray;
+  position: fixed;
+  top: 50px;
+  left: -220px;
+  width: 200px;
+  height: calc(100% - 50px);
+  padding: 20px;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 1050;
+}
+
+nav.open {
+  left: 0;
+}
+
+nav h1 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 30px;
+  user-select: none;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  margin: 15px 0;
+  position: relative;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  user-select: none;
+  padding-right: 20px;
+}
+
+nav ul li a:hover {
+  color: red;
+}
+
+/* Estilos para submenus */
+nav ul li.submenu .arrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  user-select: none;
+}
+
+nav ul li.submenu .arrow:hover {
+  color: red;
+}
+
+nav ul li ul {
+  list-style: none;
+  padding-left: 20px;
+  margin: 10px 0 0 0;
+  display: none;
+}
+
+nav ul li.submenu.open ul {
+  display: block;
+}
+
+nav ul li ul li {
+  margin: 10px 0;
+}
+
+nav ul li ul li a {
+  color: #ccc;
+  font-size: 14px;
+  padding-right: 0;
+}
+
+nav ul li ul li a:hover {
+  color: red;
+}
+
+/* CONTEÚDO principal */
+main {
+  padding: 120px 20px 20px 20px;
+  transition: margin-left 0.3s ease;
+}
+
+main.shifted {
+  margin-left: 220px;
+}
+
+.banner {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: red;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.product {
+  background: #fff;
+  color: #222;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.35);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.product:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(0,0,0,0.45);
+}
+
+.product img {
+  max-width: 160px;
+  margin-bottom: 10px;
+}
+
+.product .name {
+  font-weight: bold;
+  font-size: 0.85em;
+  margin-bottom: 4px;
+  color: #222;
+  text-align: center;
+}
+
+/* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+@media (min-width: 768px) {
   nav {
-    background-color: #1a1a1a;
-    width: 220px;
-    height: 100vh;
-    padding: 1em;
-    box-shadow: 2px 0px 5px rgba(0,0,0,0.8);
+    left: 0 !important;
   }
-
-  nav h1 {
-    margin-bottom: 2em;
-    color: #fff;
-    font-weight: normal;
-    font-size: 1.4em;
-  }
-
-  nav ul { list-style: none; }
-
-  nav ul li { margin-bottom: 1em; }
-
-  nav ul li a {
-    color: #7dbb9d;
-    text-decoration: none;
-    font-size: 0.9em;
-  }
-
-  nav ul li a:hover { color: #3bb33b; }
 
   main {
-    flex-grow: 1;
-    padding: 20px;
-    max-width: 1000px;
-    margin: auto;
+    margin-left: 220px !important;
+    padding-top: 20px;
   }
 
-  header { margin-bottom: 20px; }
-
-  header h2 {
-    font-size: 5em;
-    color: rgba(200,200,200,0.15);
-    text-align: center;
-    font-weight: 800;
-    letter-spacing: 10px;
-    font-family: 'Impact', Arial, sans-serif;
+  header .menu-toggle {
+    display: none;
   }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
-    gap: 20px;
-  }
-
-  .product {
-    background: #fff;
-    color: #222;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 6px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.35);
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-
-  .product:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 18px rgba(0,0,0,0.45);
-  }
-
-  .product img {
-    max-width: 160px;
-    margin-bottom: 10px;
-  }
-
-  .product .name {
-    font-weight: bold;
-    font-size: 0.85em;
-    margin-bottom: 4px;
-    color: #222;
-    text-align: center;
-  }
-
-  .product .desc {
-    font-size: 0.75em;
-    color: #555;
-    text-align: center;
-  }
+}
 </style>
 </head>
 <body>
-
-<nav>
+<header>
+  <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
   <h1>TecPrices</h1>
+</header>
+<nav id="side-menu" aria-label="Menu de navegação">
   <ul>
-    <li><a href="#">Início</a></li>
-    <li><a href="#">Requisitos de jogos</a></li>
-    <li><a href="#">Teste de desempenho</a></li>
-    <li>
-      <details open>
-        <summary style="color: #ccc; cursor:pointer;">Computadores</summary>
-      </details>
+    <li><a href="site_inicio.html">Início</a></li>
+    <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+    <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+    <li class="submenu" id="computadores-submenu">
+      <a href="computadores.html">Computadores</a>
+      <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+      <ul>
+        <li><a href="computadores_games.html">Computadores para games</a></li>
+        <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
+        <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+      </ul>
     </li>
-    <li>
-      <details open>
-        <summary style="color: #ccc; cursor:pointer;">Periféricos</summary>
-        <ul style="margin-left: 15px;">
-          <li><a href="#" style="color:#7dbb9d;">Teclados</a></li>
-          <li><a href="#" style="color:#3bb33b;">Mouses</a></li>
-          <li><a href="#" style="color:#7dbb9d;">Mousepads</a></li>
-          <li><a href="#" style="color:#7dbb9d;">Headsets</a></li>
-        </ul>
-      </details>
+    <li class="submenu" id="perifericos-submenu">
+      <a href="perifericos.html">Periféricos</a>
+      <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+      <ul>
+        <li><a href="perifericos_teclados.html">Teclados</a></li>
+        <li><a href="perifericos_mouses.html">Mouses</a></li>
+        <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+        <li><a href="perifericos_headsets.html">Headsets</a></li>
+      </ul>
     </li>
-    <li><a href="#" style="color:#ccc;">Monte seu Setup</a></li>
-    <li><a href="#" style="color:#ccc;">Sobre nós</a></li>
+    <li><a href="monte_setup.html">Monte seu Setup</a></li>
+    <li><a href="sobre_nos.html">Sobre nós</a></li>
   </ul>
 </nav>
+<main id="main-content">
 
-<main>
-  <header>
+  <div class="title-area">
     <h2>MOUSES</h2>
-  </header>
+  </div>
 
   <div class="gallery">
-
     <div class="product">
       <img src="https://images.kabum.com.br/produtos/fotos/120428/mouse-sem-fio-ms200-usb-1200dpi-3-botoes-design-ergonomico-preto-multi-mo251_1644284138_gg.jpg" alt="">
       <div class="name">Mouse Sem Fio MS200 USB 1200dpi 3 Botões Design Ergonômico Preto Multi - MO251</div>
@@ -181,8 +329,36 @@
       <img src="https://images.kabum.com.br/produtos/fotos/121891/mouse-corsair-harpoon-pro-rgb-r6-12000-dpi-ch-9301111-na_1649676439_gg.jpg" alt="">
       <div class="name">Mouse Corsair Harpoon Pro RGB R6 12000 DPI - CH-9301111-NA</div>
     </div>
-
   </div>
 </main>
+<script>
+const menuToggle = document.getElementById('menu-toggle');
+const sideMenu = document.getElementById('side-menu');
+const mainContent = document.getElementById('main-content');
+
+menuToggle.addEventListener('click', () => {
+  menuToggle.classList.toggle('open');
+  sideMenu.classList.toggle('open');
+  mainContent.classList.toggle('shifted');
+});
+
+menuToggle.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    menuToggle.click();
+  }
+});
+
+function toggleSubmenu(id) {
+  const submenu = document.getElementById(id);
+  const arrow = submenu.querySelector('.arrow');
+  submenu.classList.toggle('open');
+  if (submenu.classList.contains('open')) {
+    arrow.innerHTML = '▴';
+  } else {
+    arrow.innerHTML = '▾';
+  }
+}
+</script>
 </body>
 </html>
