@@ -1,11 +1,471 @@
+<think>
+  まず、ユーザーのクエリを理解する。ユーザーは、提供されたHTMLコード（TecPrices - Sobre
+  nósのページ）を基に、メインの内容を以前のリンクのサイト（https://sites.google.com/view/tecpricesunisal/computadores?authuser=0）と同じにするよう求めている。つまり、ページの構造と機能を維持しつつ、コンテンツを「Computadores」ページの内容に置き換える。
+
+
+  ## Understanding User Request
+  - The user wants to modify the HTML code for the "TecPrices - Sobre nós" page to match the content and structure of a
+  previous link, specifically the "Computadores" page.
+  - The goal is to keep the page's layout and functionality intact while replacing the content with that of the
+  "Computadores" page.
+</think>```html
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Título da Página</title>
-  </head>
-  <body>
-    <h1>Meu mundo</h1>
-    <p>Meu parágrafo.</p>
-  </body>
-</html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TecPrices - Computadores</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      /* Fundo branco */
+      color: black;
+      /* Texto preto para legibilidade */
+    }
+
+    /* HEADER com botão de menu */
+    header {
+      display: flex;
+      align-items: center;
+      background-color: gray;
+      /* Fundo cinza */
+      padding: 10px 15px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1100;
+    }
+
+    /* Ícone hambúrguer */
+    .menu-toggle {
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      position: relative;
+    }
+
+    .menu-toggle span {
+      background-color: white;
+      /* Branco */
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px;
+      left: 0;
+      transition: 0.3s ease;
+    }
+
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      top: 8px;
+    }
+
+    .menu-toggle span:nth-child(3) {
+      top: 16px;
+    }
+
+    /* Animação para o X */
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 8px;
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 8px;
+    }
+
+    header h1 {
+      margin-left: 15px;
+      color: white;
+      /* Branco */
+      font-size: 22px;
+      user-select: none;
+    }
+
+    /* NAV oculto inicialmente */
+    nav {
+      background-color: gray;
+      /* Fundo cinza */
+      position: fixed;
+      top: 50px;
+      /* altura do header */
+      left: -220px;
+      /* escondido da tela */
+      width: 200px;
+      height: calc(100% - 50px);
+      padding: 20px;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 1050;
+    }
+
+    nav.open {
+      left: 0;
+    }
+
+    nav h1 {
+      color: white;
+      /* Branco */
+      font-size: 24px;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 15px 0;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: white;
+      /* Branco */
+      text-decoration: none;
+      font-size: 16px;
+      user-select: none;
+      padding-right: 20px;
+      /* Espaço para a seta */
+    }
+
+    nav ul li a:hover {
+      color: red;
+      /* Vermelho no hover */
+    }
+
+    /* Estilos para submenus */
+    nav ul li.submenu .arrow {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      color: white;
+      /* Branco */
+      font-size: 14px;
+      user-select: none;
+    }
+
+    nav ul li.submenu .arrow:hover {
+      color: red;
+      /* Vermelho no hover */
+    }
+
+    nav ul li ul {
+      list-style: none;
+      padding-left: 20px;
+      margin: 10px 0 0 0;
+      display: none;
+    }
+
+    nav ul li.submenu.open ul {
+      display: block;
+    }
+
+    nav ul li ul li {
+      margin: 10px 0;
+    }
+
+    nav ul li ul li a {
+      color: #ccc;
+      /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
+      font-size: 14px;
+      padding-right: 0;
+      /* Sem padding extra nos subitens */
+    }
+
+    nav ul li ul li a:hover {
+      color: red;
+      /* Vermelho no hover */
+    }
+
+    /* CONTEÚDO principal */
+    main {
+      padding: 70px 20px 20px 20px;
+      transition: margin-left 0.3s ease;
+    }
+
+    main.shifted {
+      margin-left: 220px;
+    }
+
+    /* Estilos do seu conteúdo */
+    .banner {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: red;
+      /* Mantém vermelho */
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      margin-bottom: 30px;
+    }
+
+    .buttons button {
+      margin-right: 10px;
+      background: none;
+      border: 1px solid black;
+      /* Preto para legibilidade */
+      color: black;
+      /* Preto */
+      padding: 7px 15px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .buttons button:hover {
+      background-color: red;
+      /* Vermelho */
+    }
+
+    .subtitle {
+      font-size: 20px;
+      font-style: italic;
+      color: #7a66cc;
+      /* Mantém roxo */
+      margin-bottom: 8px;
+    }
+
+    .subtitle2 {
+      font-size: 16px;
+      color: #2F9B2F;
+      /* Mantém verde */
+      margin-bottom: 20px;
+    }
+
+    .content {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .content img {
+      max-width: 400px;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .content div {
+      flex: 1;
+      font-size: 14px;
+      color: #333;
+      /* Cinza escuro para legibilidade */
+    }
+
+    .content div p.red {
+      color: #FF0000;
+      /* Vermelho */
+      font-weight: bold;
+    }
+
+    .content div button {
+      margin-top: 20px;
+      background: none;
+      border: 1px solid black;
+      /* Preto */
+      color: black;
+      /* Preto */
+      padding: 7px 15px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .content div button:hover {
+      background-color: red;
+      /* Vermelho */
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      /* Cinza claro */
+      margin: 30px 0;
+    }
+
+    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+    @media (min-width: 768px) {
+      nav {
+        left: 0 !important;
+      }
+
+      main {
+        margin-left: 220px !important;
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h1>TecPrices</h1>
+  </header>
+
+  <nav id="side-menu" aria-label="Menu de navegação">
+    <ul>
+      <li><a href="site_inicio.html">Início</a></li>
+      <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+      <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+      <li class="submenu" id="computadores-submenu">
+        <a href="computadores.html">Computadores</a>
+        <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+        <ul>
+          <li><a href="computadores_games.html">Computadores para games</a></li>
+          <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
+          <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+        </ul>
+      </li>
+      <li class="submenu" id="perifericos-submenu">
+        <a href="perifericos.html">Periféricos</a>
+        <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+        <ul>
+          <li><a href="perifericos_teclados.html">Teclados</a></li>
+          <li><a href="perifericos_mouses.html">Mouses</a></li>
+          <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+          <li><a href="perifericos_headsets.html">Headsets</a></li>
+        </ul>
+      </li>
+      <li><a href="monte_setup.html">Monte seu Setup</a></li>
+      <li><a href="sobre_nos.html">Sobre nós</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <!-- Conteúdo principal baseado no site original "Computadores" -->
+    <h1>Computador Gamer, qual comprar?</h1>
+    <p>
+      Pensando em PC Gamer, qualquer um sem estudo pode achar que todos que achamos pela internet pode ser um de
+      qualidade, porem na verdade não costuma ser assim, para entendermos o por que de um PC Gamer ter uma configuração
+      boa para ser realmente um Gamer, vamos entender e estudar primeiramente as suas peças para montarmos uma máquina
+      TOP!
+    </p>
+    <p>
+      Na prática, a principal vantagem do PC é a liberdade de escolha: você pode decidir construir uma máquina com
+      componentes mais mundanos (e melhorá-la com o tempo)
+    </p>
+    <p>
+      E obviamente para o melhor custo benefício, vamos mostrar algumas peças mais limitadas, porém ótimas para uma
+      montagem inicial supimpa!
+    </p>
+
+    <h2>Vamos começar pela Memória RAM</h2>
+    <p>
+      Para o seu PC, escolha pelo menos 8 GB de memória RAM. Dependendo do jogo, o uso da CPU é muito exigente e é
+      necessária uma boa memória para atingir altas velocidades. Para plataformas de jogos mais exigentes, a porção de
+      16 GB é recomendada, mas somente se necessário, caso queira então um pouco mais a baixo, uma de 8GB é melhor do
+      que acabar comprando duas de 4GB.
+    </p>
+
+    <!-- Exemplo de produtos RAM -->
+    <div class="content">
+      <img src="memorias/vulcan_3000m8g.webp">
+      <div>
+        <p><strong>Team Group T-Force VULCAN Pichau RTB, 8GB, DDR4, 3000MHZ</strong></p>
+        <p>Saindo por volta de R$300,00 as séries VULCAN suportam Intel® XMP 2.0. Apenas a um passo de experimentar a
+          sensação de alta velocidade do overclock. A baixa tensão de operação do DDR4 VULCAN não apenas economiza
+          energia, mas também reduz a temperatura e o calor gerado, permitindo que a memória de alta velocidade funcione
+          de forma estável e duradoura. Várias verificações de compatibilidade com placas-mãe DDR4.</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <img src="memorias/husky_2666m8g.jpg">
+      <div>
+        <p><strong>Gamer Husky Gaming, 8GB, 2666MHz, DDR4, CL19</strong></p>
+        <p>Velocidade de 2666Mhz para o seu drama e por apenas R$223,00. Projetada para desempenho máximo, a memória
+          Husky possui dissipadores de calor integrados que fornecem condutividade térmica ideal, permitindo que o
+          sistema permaneça estável por longos períodos de tempo. Com 2666Mhz, garante maior velocidade e desempenho
+          potente de computador de alta performance, oferecendo capacidade de 8GB com a tecnologia DDR4.</p>
+      </div>
+    </div>
+
+    <!-- Outros produtos RAM aqui (similarmente) -->
+    <!-- Para brevidade, apenas exemplos. Adicione mais conforme necessário -->
+
+    <h2>Placa de vídeo</h2>
+    <p>
+      Uma placa de vídeo é essencial para o seu PC rodar jogos de alta qualidade sem travar. Essa placa é responsável
+      por acelerar a criação e renderização de imagens, vídeos e animações. E é muito rápido, deixando o processador
+      livre para realizar outras funções.
+    </p>
+    <p>
+      Além de desempenhar a função básica de exibir imagens na tela, as placas gráficas também podem ser usadas para
+      rodar jogos e softwares que exigem muito processamento visual. Ocasionalmente, a placa gráfica também pode ser
+      usada como auxiliar em alguns programas, geralmente como "aceleração de hardware"
+    </p>
+
+    <!-- Exemplo de produtos Placa de vídeo -->
+    <div class="content">
+      <img
+        src="https://lh3.googleusercontent.com/sitesv/AAzXCkc_ZPVls0CG4tw_PadrO9iFHlGzM1WX-QC9p2HCIZgJngGu6IgvKp9dj3HbX8l-6ZKIDCOX_uHEBlAdCSAeiDLr7RTiwLy7uyR0celN3pqDe6wdwUB2Oyc_8upKQSXcxdPrAPOWGb5BOrBPqM--gVFor940Gc0ap2NrhAPkWKOdPi-Rk1UmbGAqHPBvF7YdA2wtK519p1VlJMrZ-rMTzbFQGyiUxtS_yl7e25Q=w1280"
+        alt="RX Radeon 6600">
+      <div>
+        <p><strong>RX Radeon 6600</strong></p>
+        <p>Na faixa de R$1859,00, é uma placa custo benefício para jogos competitivos, pois com sua tecnologia RDNA2,
+          ela oferece a melhor experiência possível em 1080p nas configurações máximas, seu acelerador de raio AMD
+          Infinity Cache melhora o desempenho e o ganho de Frames em diversos jogos é notável e além das outras
+          tecnolgias como: DirectX Raytracing , Variable Rate Shading e a FidelityFX1 que melhoram a qualidade gráfica
+          do jogo. Isso faz a RX Radeon 6600 ser uma das melhores opções do mercado nos dias atuais.</p>
+      </div>
+    </div>
+
+    <!-- Outros produtos Placa de vídeo aqui -->
+
+    <h2>Processadores</h2>
+    <p>
+      O Processador é o "cérebro" do computador, sendo responsável por realizar os circuitos e processos de entrada,
+      armazenamento de dados e processos de saída, o CPU é muito importante na área de games, pois ele é responsável
+      pela taxa de quadros e configurações alteráveis nos jogos. A velocidade do clock das CPUs e a contagem de núcleos
+      viabiliza a indicação dos recursos de desempenho, o que não deixa o computador mais potente apenas em jogos, mas
+      também em Apps e no uso do Software. Muitos processadores possuem funções populares e muito utilizadas em outras
+      áreas como gráficos integrados, que não necessita de uma placa de vídeo, e o overclock que aumenta o desempenho do
+      Processador.
+    </p>
+
+    <!-- Exemplo de produtos Processadores -->
+    <div class="content">
+      <img
+        src="https://lh3.googleusercontent.com/sitesv/AAzXCkeMazsKEfs3mfs56j5L1dvSOsJic6XNkeUtOdc7R8GVDIXidRcS1M6GYFhZ-vXAmpD8oCa-JIl8gA6dXmmYXS2lGlLmEIo2Gk16MUEJvjpm_CrCaqEzZA27gOL6El6v2u4Cfu7pgPV8KsbtskiqpmbhN2WMtny5cE7yJ_eQSVQBekhmgv-8fZj53bCE=w1280"
+        alt="AMD Ryzen 5 3600, 6-Core, 12-Threads, 3.6ghz (4.2GHz Turbo)">
+      <div>
+        <p><strong>AMD Ryzen 5 3600, 6-Core, 12-Threads, 3.6ghz (4.2GHz Turbo)</strong></p>
+        <p>Esse poderoso Ryzen 5 da 3º geração, que possui o núcleo Zen 2, capaz de ultrapassar um alto desempenho.
