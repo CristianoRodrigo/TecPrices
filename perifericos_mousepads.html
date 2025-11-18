@@ -1,11 +1,296 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Título da Página</title>
-  </head>
-  <body>
-    <h1>Meu mundo</h1>
-    <p>Meu parágrafo.</p>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TecPrices - Computadores</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      /* Fundo branco */
+      color: black;
+      /* Texto preto para legibilidade */
+    }
+
+    /* HEADER com botão de menu */
+    header {
+      display: flex;
+      align-items: center;
+      background-color: gray;
+      /* Fundo cinza */
+      padding: 10px 15px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1100;
+    }
+
+    /* Ícone hambúrguer */
+    .menu-toggle {
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      position: relative;
+    }
+
+    .menu-toggle span {
+      background-color: white;
+      /* Branco */
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px;
+      left: 0;
+      transition: 0.3s ease;
+    }
+
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      top: 8px;
+    }
+
+    .menu-toggle span:nth-child(3) {
+      top: 16px;
+    }
+
+    /* Animação para o X */
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 8px;
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 8px;
+    }
+
+    header h1 {
+      margin-left: 15px;
+      color: white;
+      /* Branco */
+      font-size: 22px;
+      user-select: none;
+    }
+
+    /* NAV oculto inicialmente */
+    nav {
+      background-color: gray;
+      /* Fundo cinza */
+      position: fixed;
+      top: 50px;
+      /* altura do header */
+      left: -220px;
+      /* escondido da tela */
+      width: 200px;
+      height: calc(100% - 50px);
+      padding: 20px;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 1050;
+    }
+
+    nav.open {
+      left: 0;
+    }
+
+    nav h1 {
+      color: white;
+      /* Branco */
+      font-size: 24px;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 15px 0;
+      position: relative;
+    }
+
+    nav ul li a {
+      color: white;
+      /* Branco */
+      text-decoration: none;
+      font-size: 16px;
+      user-select: none;
+      padding-right: 20px;
+      /* Espaço para a seta */
+    }
+
+    nav ul li a:hover {
+      color: red;
+      /* Vermelho no hover */
+    }
+
+    /* Estilos para submenus */
+    nav ul li.submenu .arrow {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      color: white;
+      /* Branco */
+      font-size: 14px;
+      user-select: none;
+    }
+
+    nav ul li.submenu .arrow:hover {
+      color: red;
+      /* Vermelho no hover */
+    }
+
+    nav ul li ul {
+      list-style: none;
+      padding-left: 20px;
+      margin: 10px 0 0 0;
+      display: none;
+    }
+
+    nav ul li.submenu.open ul {
+      display: block;
+    }
+
+    nav ul li ul li {
+      margin: 10px 0;
+    }
+
+    nav ul li ul li a {
+      color: #ccc;
+      /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
+      font-size: 14px;
+      padding-right: 0;
+      /* Sem padding extra nos subitens */
+    }
+
+    nav ul li ul li a:hover {
+      color: red;
+      /* Vermelho no hover */
+    }
+
+    /* CONTEÚDO principal */
+    main {
+      padding: 70px 20px 20px 20px;
+      transition: margin-left 0.3s ease;
+    }
+
+    main.shifted {
+      margin-left: 220px;
+    }
+
+    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+    @media (min-width: 768px) {
+      nav {
+        left: 0 !important;
+      }
+
+      main {
+        margin-left: 220px !important;
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h1>TecPrices</h1>
+  </header>
+
+  <nav id="side-menu" aria-label="Menu de navegação">
+    <ul>
+      <li><a href="site_inicio.html">Início</a></li>
+      <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+      <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+      <li class="submenu" id="computadores-submenu">
+        <a href="computadores.html">Computadores</a>
+        <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+        <ul>
+          <li><a href="computadores_games.html">Computadores para games</a></li>
+          <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
+          <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+        </ul>
+      </li>
+      <li class="submenu" id="perifericos-submenu">
+        <a href="perifericos.html">Periféricos</a>
+        <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+        <ul>
+          <li><a href="perifericos_teclados.html">Teclados</a></li>
+          <li><a href="perifericos_mouses.html">Mouses</a></li>
+          <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+          <li><a href="perifericos_headsets.html">Headsets</a></li>
+        </ul>
+      </li>
+      <li><a href="monte_setup.html">Monte seu Setup</a></li>
+      <li><a href="sobre_nos.html">Sobre nós</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+    <!-- Conteúdo principal aqui (adicione conforme necessário) -->
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sideMenu = document.getElementById('side-menu');
+    const mainContent = document.getElementById('main-content');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      sideMenu.classList.toggle('open');
+      mainContent.classList.toggle('shifted');
+    });
+
+    // Permitir abrir menu pelo teclado (Enter / Espaço)
+    menuToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
+
+    // Função para toggle dos submenus
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      const arrow = submenu.querySelector('.arrow');
+      submenu.classList.toggle('open');
+      if (submenu.classList.contains('open')) {
+        arrow.innerHTML = '▴';
+      } else {
+        arrow.innerHTML = '▾';
+      }
+    }
+  </script>
+
+</body>
+
 </html>
