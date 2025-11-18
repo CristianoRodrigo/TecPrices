@@ -1,364 +1,384 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TecPrices - Mouses</title>
-<style>
-/* Reset básico */
-* {
-  box-sizing: border-box;
-}
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: white;
-  color: black;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TecPrices - Mouses</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
 
-/* HEADER com botão de menu */
-header {
-  display: flex;
-  align-items: center;
-  background-color: gray;
-  padding: 10px 15px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1100;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: black;
+    }
 
-/* Ícone hambúrguer */
-.menu-toggle {
-  cursor: pointer;
-  width: 30px;
-  height: 20px;
-  position: relative;
-}
+    /* HEADER com botão de menu */
+    header {
+      display: flex;
+      align-items: center;
+      background-color: gray;
+      padding: 10px 15px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1100;
+    }
 
-.menu-toggle span {
-  background-color: white;
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  border-radius: 3px;
-  left: 0;
-  transition: 0.3s ease;
-}
+    /* Ícone hambúrguer */
+    .menu-toggle {
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      position: relative;
+    }
 
-.menu-toggle span:nth-child(1) {
-  top: 0;
-}
+    .menu-toggle span {
+      background-color: white;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px;
+      left: 0;
+      transition: 0.3s ease;
+    }
 
-.menu-toggle span:nth-child(2) {
-  top: 8px;
-}
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
 
-.menu-toggle span:nth-child(3) {
-  top: 16px;
-}
+    .menu-toggle span:nth-child(2) {
+      top: 8px;
+    }
 
-/* Animação para o X */
-.menu-toggle.open span:nth-child(1) {
-  transform: rotate(45deg);
-  top: 8px;
-}
+    .menu-toggle span:nth-child(3) {
+      top: 16px;
+    }
 
-.menu-toggle.open span:nth-child(2) {
-  opacity: 0;
-}
+    /* Animação para o X */
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 8px;
+    }
 
-.menu-toggle.open span:nth-child(3) {
-  transform: rotate(-45deg);
-  top: 8px;
-}
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
 
-header h1 {
-  margin-left: 15px;
-  color: white;
-  font-size: 22px;
-  user-select: none;
-}
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 8px;
+    }
 
-/* NAV oculto inicialmente */
-nav {
-  background-color: gray;
-  position: fixed;
-  top: 50px;
-  left: -220px;
-  width: 200px;
-  height: calc(100% - 50px);
-  padding: 20px;
-  overflow-y: auto;
-  transition: left 0.3s ease;
-  z-index: 1050;
-}
+    header h1 {
+      margin-left: 15px;
+      color: white;
+      font-size: 22px;
+      user-select: none;
+    }
 
-nav.open {
-  left: 0;
-}
+    /* NAV oculto inicialmente */
+    nav {
+      background-color: gray;
+      position: fixed;
+      top: 50px;
+      left: -220px;
+      width: 200px;
+      height: calc(100% - 50px);
+      padding: 20px;
+      overflow-y: auto;
+      transition: left 0.3s ease;
+      z-index: 1050;
+    }
 
-nav h1 {
-  color: white;
-  font-size: 24px;
-  margin-bottom: 30px;
-  user-select: none;
-}
+    nav.open {
+      left: 0;
+    }
 
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    nav h1 {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 30px;
+      user-select: none;
+    }
 
-nav ul li {
-  margin: 15px 0;
-  position: relative;
-}
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  user-select: none;
-  padding-right: 20px;
-}
+    nav ul li {
+      margin: 15px 0;
+      position: relative;
+    }
 
-nav ul li a:hover {
-  color: red;
-}
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      user-select: none;
+      padding-right: 20px;
+    }
 
-/* Estilos para submenus */
-nav ul li.submenu .arrow {
-  position: absolute;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-  color: white;
-  font-size: 14px;
-  user-select: none;
-}
+    nav ul li a:hover {
+      color: red;
+    }
 
-nav ul li.submenu .arrow:hover {
-  color: red;
-}
+    /* Estilos para submenus */
+    nav ul li.submenu .arrow {
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+      color: white;
+      font-size: 14px;
+      user-select: none;
+    }
 
-nav ul li ul {
-  list-style: none;
-  padding-left: 20px;
-  margin: 10px 0 0 0;
-  display: none;
-}
+    nav ul li.submenu .arrow:hover {
+      color: red;
+    }
 
-nav ul li.submenu.open ul {
-  display: block;
-}
+    nav ul li ul {
+      list-style: none;
+      padding-left: 20px;
+      margin: 10px 0 0 0;
+      display: none;
+    }
 
-nav ul li ul li {
-  margin: 10px 0;
-}
+    nav ul li.submenu.open ul {
+      display: block;
+    }
 
-nav ul li ul li a {
-  color: #ccc;
-  font-size: 14px;
-  padding-right: 0;
-}
+    nav ul li ul li {
+      margin: 10px 0;
+    }
 
-nav ul li ul li a:hover {
-  color: red;
-}
+    nav ul li ul li a {
+      color: #ccc;
+      font-size: 14px;
+      padding-right: 0;
+    }
 
-/* CONTEÚDO principal */
-main {
-  padding: 120px 20px 20px 20px;
-  transition: margin-left 0.3s ease;
-}
+    nav ul li ul li a:hover {
+      color: red;
+    }
 
-main.shifted {
-  margin-left: 220px;
-}
+    /* CONTEÚDO principal */
+    main {
+      padding: 120px 20px 20px 20px;
+      transition: margin-left 0.3s ease;
+    }
 
-.banner {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 20px;
-}
+    main.shifted {
+      margin-left: 220px;
+    }
 
-h2 {
-  font-size: 28px;
-  font-weight: bold;
-  color: red;
-  font-style: italic;
-  margin-bottom: 15px;
-}
+    .banner {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
-}
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: red;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
 
-.product {
-  background: #fff;
-  color: #222;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 6px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.35);
-  transition: transform .2s ease, box-shadow .2s ease;
-}
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
 
-.product:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 18px rgba(0,0,0,0.45);
-}
+    .product {
+      background: #fff;
+      color: #222;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 6px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
 
-.product img {
-  max-width: 160px;
-  margin-bottom: 10px;
-}
+    .product:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.45);
+    }
 
-.product .name {
-  font-weight: bold;
-  font-size: 0.85em;
-  margin-bottom: 4px;
-  color: #222;
-  text-align: center;
-}
+    .product img {
+      max-width: 160px;
+      margin-bottom: 10px;
+    }
 
-/* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
-@media (min-width: 768px) {
-  nav {
-    left: 0 !important;
-  }
+    .product .name {
+      font-weight: bold;
+      font-size: 0.85em;
+      margin-bottom: 4px;
+      color: #222;
+      text-align: center;
+    }
 
-  main {
-    margin-left: 220px !important;
-    padding-top: 20px;
-  }
+    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+    @media (min-width: 768px) {
+      nav {
+        left: 0 !important;
+      }
 
-  header .menu-toggle {
-    display: none;
-  }
-}
-</style>
+      main {
+        margin-left: 220px !important;
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <h1>TecPrices</h1>
-</header>
-<nav id="side-menu" aria-label="Menu de navegação">
-  <ul>
-    <li><a href="site_inicio.html">Início</a></li>
-    <li><a href="site_requisito.html">Requisitos de jogos</a></li>
-    <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
-    <li class="submenu" id="computadores-submenu">
-      <a href="computadores.html">Computadores</a>
-      <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
-      <ul>
-        <li><a href="computadores_games.html">Computadores para games</a></li>
-        <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
-        <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
-      </ul>
-    </li>
-    <li class="submenu" id="perifericos-submenu">
-      <a href="perifericos.html">Periféricos</a>
-      <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
-      <ul>
-        <li><a href="perifericos_teclados.html">Teclados</a></li>
-        <li><a href="perifericos_mouses.html">Mouses</a></li>
-        <li><a href="perifericos_mousepads.html">Mousepads</a></li>
-        <li><a href="perifericos_headsets.html">Headsets</a></li>
-      </ul>
-    </li>
-    <li><a href="monte_setup.html">Monte seu Setup</a></li>
-    <li><a href="sobre_nos.html">Sobre nós</a></li>
-  </ul>
-</nav>
-<main id="main-content">
+  <header>
+    <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h1>TecPrices</h1>
+  </header>
+  <nav id="side-menu" aria-label="Menu de navegação">
+    <ul>
+      <li><a href="site_inicio.html">Início</a></li>
+      <li><a href="site_requisito.html">Requisitos de jogos</a></li>
+      <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+      <li class="submenu" id="computadores-submenu">
+        <a href="computadores.html">Computadores</a>
+        <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+        <ul>
+          <li><a href="computadores_games.html">Computadores para games</a></li>
+          <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
+          <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
+        </ul>
+      </li>
+      <li class="submenu" id="perifericos-submenu">
+        <a href="perifericos.html">Periféricos</a>
+        <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+        <ul>
+          <li><a href="perifericos_teclados.html">Teclados</a></li>
+          <li><a href="perifericos_mouses.html">Mouses</a></li>
+          <li><a href="perifericos_mousepads.html">Mousepads</a></li>
+          <li><a href="perifericos_headsets.html">Headsets</a></li>
+        </ul>
+      </li>
+      <li><a href="monte_setup.html">Monte seu Setup</a></li>
+      <li><a href="sobre_nos.html">Sobre nós</a></li>
+    </ul>
+  </nav>
+  <main id="main-content">
 
-  <div class="title-area">
-    <h2>MOUSES</h2>
-  </div>
-
-  <div class="gallery">
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/120428/mouse-sem-fio-ms200-usb-1200dpi-3-botoes-design-ergonomico-preto-multi-mo251_1644284138_gg.jpg" alt="">
-      <div class="name">Mouse Sem Fio MS200 USB 1200dpi 3 Botões Design Ergonômico Preto Multi - MO251</div>
+    <div class="title-area">
+      <h2>MOUSES</h2>
     </div>
 
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/156675/mouse-gamer-fortrek-g-crusader-rgb-6-botoes-7200dpi-70526_1681359719_gg.jpg" alt="">
-      <div class="name">Mouse Gamer Fortrsek G Crusader, RGB, 6 Botões, 7200DPI - 70526</div>
+    <div class="gallery">
+      <div class="product">
+        <img
+          src="https://images.kabum.com.br/produtos/fotos/120428/mouse-sem-fio-ms200-usb-1200dpi-3-botoes-design-ergonomico-preto-multi-mo251_1644284138_gg.jpg"
+          alt="">
+        <div class="name">Mouse Sem Fio MS200 USB 1200dpi 3 Botões Design Ergonômico Preto Multi - MO251</div>
+      </div>
+
+      <div class="product">
+        <img
+          src="https://images.kabum.com.br/produtos/fotos/156675/mouse-gamer-fortrek-g-crusader-rgb-6-botoes-7200dpi-70526_1681359719_gg.jpg"
+          alt="">
+        <div class="name">Mouse Gamer Fortrsek G Crusader, RGB, 6 Botões, 7200DPI - 70526</div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.kabum.com.br/produtos/fotos/91316/mouse-sem-fio-logitech-m170-preto_1565711109_gg.jpg"
+          alt="">
+        <div class="name">Mouse sem fio Logitech M170 - Preto</div>
+      </div>
+
+      <div class="product">
+        <img src="https://images.kabum.com.br/produtos/fotos/102989/mouse-hp-sem-fio-x200-oman-preto_1677799139_gg.jpg"
+          alt="">
+        <div class="name">Mouse HP sem fio X200 Oman Preto</div>
+      </div>
+
+      <div class="product">
+        <img
+          src="https://images.kabum.com.br/produtos/fotos/139088/mouse-gamer-hp-sensor-avago-3050-6-botoes-4000-dpi-g200_1656899490_gg.jpg"
+          alt="">
+        <div class="name">Mouse Gamer HP Sensor Avago 3050, 6 Botões, 4000 DPI - G200</div>
+      </div>
+
+      <div class="product">
+        <img
+          src="https://images.kabum.com.br/produtos/fotos/155250/mouse-gamer-logitech-g203-lightsync-rgb-efeito-de-ondas-de-cores-6-botoes-programaveis-e-ate-8-000-dpi-preto-910-005793_1672952272_gg.jpg"
+          alt="">
+        <div class="name">Mouse Gamer Logitech G203 LIGHTSYNC RGB, 6 Botões Programáveis, até 8.000 DPI - Preto</div>
+      </div>
+
+      <div class="product">
+        <img
+          src="https://images.kabum.com.br/produtos/fotos/158798/mouse-para-jogo-steelseries-rival-3-62513-preto_1685043748_gg.jpg"
+          alt="">
+        <div class="name">Mouse para jogo SteelSeries Rival 3 62513 Preto</div>
+      </div>
+
+      <div class="product">
+        <img
+          src="https://images.kabum.com.br/produtos/fotos/121891/mouse-corsair-harpoon-pro-rgb-r6-12000-dpi-ch-9301111-na_1649676439_gg.jpg"
+          alt="">
+        <div class="name">Mouse Corsair Harpoon Pro RGB R6 12000 DPI - CH-9301111-NA</div>
+      </div>
     </div>
+  </main>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sideMenu = document.getElementById('side-menu');
+    const mainContent = document.getElementById('main-content');
 
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/91316/mouse-sem-fio-logitech-m170-preto_1565711109_gg.jpg" alt="">
-      <div class="name">Mouse sem fio Logitech M170 - Preto</div>
-    </div>
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      sideMenu.classList.toggle('open');
+      mainContent.classList.toggle('shifted');
+    });
 
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/102989/mouse-hp-sem-fio-x200-oman-preto_1677799139_gg.jpg" alt="">
-      <div class="name">Mouse HP sem fio X200 Oman Preto</div>
-    </div>
+    menuToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
 
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/139088/mouse-gamer-hp-sensor-avago-3050-6-botoes-4000-dpi-g200_1656899490_gg.jpg" alt="">
-      <div class="name">Mouse Gamer HP Sensor Avago 3050, 6 Botões, 4000 DPI - G200</div>
-    </div>
-
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/155250/mouse-gamer-logitech-g203-lightsync-rgb-efeito-de-ondas-de-cores-6-botoes-programaveis-e-ate-8-000-dpi-preto-910-005793_1672952272_gg.jpg" alt="">
-      <div class="name">Mouse Gamer Logitech G203 LIGHTSYNC RGB, 6 Botões Programáveis, até 8.000 DPI - Preto</div>
-    </div>
-
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/158798/mouse-para-jogo-steelseries-rival-3-62513-preto_1685043748_gg.jpg" alt="">
-      <div class="name">Mouse para jogo SteelSeries Rival 3 62513 Preto</div>
-    </div>
-
-    <div class="product">
-      <img src="https://images.kabum.com.br/produtos/fotos/121891/mouse-corsair-harpoon-pro-rgb-r6-12000-dpi-ch-9301111-na_1649676439_gg.jpg" alt="">
-      <div class="name">Mouse Corsair Harpoon Pro RGB R6 12000 DPI - CH-9301111-NA</div>
-    </div>
-  </div>
-</main>
-<script>
-const menuToggle = document.getElementById('menu-toggle');
-const sideMenu = document.getElementById('side-menu');
-const mainContent = document.getElementById('main-content');
-
-menuToggle.addEventListener('click', () => {
-  menuToggle.classList.toggle('open');
-  sideMenu.classList.toggle('open');
-  mainContent.classList.toggle('shifted');
-});
-
-menuToggle.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    menuToggle.click();
-  }
-});
-
-function toggleSubmenu(id) {
-  const submenu = document.getElementById(id);
-  const arrow = submenu.querySelector('.arrow');
-  submenu.classList.toggle('open');
-  if (submenu.classList.contains('open')) {
-    arrow.innerHTML = '▴';
-  } else {
-    arrow.innerHTML = '▾';
-  }
-}
-</script>
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(id);
+      const arrow = submenu.querySelector('.arrow');
+      submenu.classList.toggle('open');
+      if (submenu.classList.contains('open')) {
+        arrow.innerHTML = '▴';
+      } else {
+        arrow.innerHTML = '▾';
+      }
+    }
+  </script>
 </body>
+
 </html>

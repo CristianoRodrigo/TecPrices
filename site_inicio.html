@@ -2,6 +2,9 @@
 <html lang="pt-br">
 
 <head>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TecPrices</title>
@@ -14,15 +17,18 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: white; /* Fundo branco */
-      color: black; /* Texto preto para legibilidade */
+      background-color: white;
+      /* Fundo branco */
+      color: black;
+      /* Texto preto para legibilidade */
     }
 
     /* HEADER com botão de menu */
     header {
       display: flex;
       align-items: center;
-      background-color: gray; /* Fundo cinza */
+      background-color: gray;
+      /* Fundo cinza */
       padding: 10px 15px;
       position: fixed;
       width: 100%;
@@ -39,7 +45,8 @@
     }
 
     .menu-toggle span {
-      background-color: white; /* Branco */
+      background-color: white;
+      /* Branco */
       position: absolute;
       height: 3px;
       width: 100%;
@@ -77,14 +84,16 @@
 
     header h1 {
       margin-left: 15px;
-      color: white; /* Branco */
+      color: white;
+      /* Branco */
       font-size: 22px;
       user-select: none;
     }
 
     /* NAV oculto inicialmente */
     nav {
-      background-color: gray; /* Fundo cinza */
+      background-color: gray;
+      /* Fundo cinza */
       position: fixed;
       top: 50px;
       /* altura do header */
@@ -103,7 +112,8 @@
     }
 
     nav h1 {
-      color: white; /* Branco */
+      color: white;
+      /* Branco */
       font-size: 24px;
       margin-bottom: 30px;
       user-select: none;
@@ -121,15 +131,18 @@
     }
 
     nav ul li a {
-      color: white; /* Branco */
+      color: white;
+      /* Branco */
       text-decoration: none;
       font-size: 16px;
       user-select: none;
-      padding-right: 20px; /* Espaço para a seta */
+      padding-right: 20px;
+      /* Espaço para a seta */
     }
 
     nav ul li a:hover {
-      color: red; /* Vermelho no hover */
+      color: red;
+      /* Vermelho no hover */
     }
 
     /* Estilos para submenus */
@@ -138,13 +151,15 @@
       right: 0;
       top: 0;
       cursor: pointer;
-      color: white; /* Branco */
+      color: white;
+      /* Branco */
       font-size: 14px;
       user-select: none;
     }
 
     nav ul li.submenu .arrow:hover {
-      color: red; /* Vermelho no hover */
+      color: red;
+      /* Vermelho no hover */
     }
 
     nav ul li ul {
@@ -163,13 +178,16 @@
     }
 
     nav ul li ul li a {
-      color: #ccc; /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
+      color: #ccc;
+      /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
       font-size: 14px;
-      padding-right: 0; /* Sem padding extra nos subitens */
+      padding-right: 0;
+      /* Sem padding extra nos subitens */
     }
 
     nav ul li ul li a:hover {
-      color: red; /* Vermelho no hover */
+      color: red;
+      /* Vermelho no hover */
     }
 
     /* CONTEÚDO principal */
@@ -193,7 +211,8 @@
     h2 {
       font-size: 28px;
       font-weight: bold;
-      color: red; /* Mantém vermelho */
+      color: red;
+      /* Mantém vermelho */
       font-style: italic;
       margin-bottom: 15px;
     }
@@ -205,27 +224,32 @@
     .buttons button {
       margin-right: 10px;
       background: none;
-      border: 1px solid black; /* Preto para legibilidade */
-      color: black; /* Preto */
+      border: 1px solid black;
+      /* Preto para legibilidade */
+      color: black;
+      /* Preto */
       padding: 7px 15px;
       cursor: pointer;
       font-size: 14px;
     }
 
     .buttons button:hover {
-      background-color: red; /* Vermelho */
+      background-color: red;
+      /* Vermelho */
     }
 
     .subtitle {
       font-size: 20px;
       font-style: italic;
-      color: #7a66cc; /* Mantém roxo */
+      color: #7a66cc;
+      /* Mantém roxo */
       margin-bottom: 8px;
     }
 
     .subtitle2 {
       font-size: 16px;
-      color: #2F9B2F; /* Mantém verde */
+      color: #2F9B2F;
+      /* Mantém verde */
       margin-bottom: 20px;
     }
 
@@ -246,31 +270,37 @@
     .content div {
       flex: 1;
       font-size: 14px;
-      color: #333; /* Cinza escuro para legibilidade */
+      color: #333;
+      /* Cinza escuro para legibilidade */
     }
 
     .content div p.red {
-      color: #FF0000; /* Vermelho */
+      color: #FF0000;
+      /* Vermelho */
       font-weight: bold;
     }
 
     .content div button {
       margin-top: 20px;
       background: none;
-      border: 1px solid black; /* Preto */
-      color: black; /* Preto */
+      border: 1px solid black;
+      /* Preto */
+      color: black;
+      /* Preto */
       padding: 7px 15px;
       cursor: pointer;
       font-size: 14px;
     }
 
     .content div button:hover {
-      background-color: red; /* Vermelho */
+      background-color: red;
+      /* Vermelho */
     }
 
     hr {
       border: 0;
-      border-top: 1px solid #ccc; /* Cinza claro */
+      border-top: 1px solid #ccc;
+      /* Cinza claro */
       margin: 30px 0;
     }
 
@@ -337,10 +367,10 @@
 
     <h2>Veja os nossos departamentos!</h2>
     <div class="buttons">
-      <a href="computadores.html"><button>Computadores</button></a>
-      <a href="perifericos.html"><button>Periféricos</button></a>
-      <a href="monte_setup.html"><button>Monte seu Setup</button></a>
-      <a href="site_requisito.html"><button>Requisitos de Jogos</button></a>
+      <button>Computadores</button>
+      <button>Periféricos</button>
+      <button>Monte seu Setup</button>
+      <button>Requisitos de Jogos</button>
     </div>
 
     <h3 class="subtitle">Algumas máquinas para Games</h3>
@@ -354,7 +384,7 @@
           carregamento das imagens que CPU não aguenta porque ele é melhor para games.</p>
         <p>SSD carrega as informações que existe nele, isso melhora muito mais a qualidade do que
           você usar um HD.</p>
-        <a href="computadores_games.html"><button>Computadores para games</button></a>
+        <button>Máquinas para Gamers</button>
       </div>
     </div>
 
