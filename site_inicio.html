@@ -3,11 +3,11 @@
 
 <head>
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TecPrices</title>
+  <title>TecPrices - Computadores</title>
   <style>
     /* Reset básico */
     * {
@@ -18,9 +18,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: white;
-      /* Fundo branco */
       color: black;
-      /* Texto preto para legibilidade */
     }
 
     /* HEADER com botão de menu */
@@ -28,7 +26,6 @@
       display: flex;
       align-items: center;
       background-color: gray;
-      /* Fundo cinza */
       padding: 10px 15px;
       position: fixed;
       width: 100%;
@@ -36,7 +33,6 @@
       z-index: 1100;
     }
 
-    /* Ícone hambúrguer */
     .menu-toggle {
       cursor: pointer;
       width: 30px;
@@ -46,7 +42,6 @@
 
     .menu-toggle span {
       background-color: white;
-      /* Branco */
       position: absolute;
       height: 3px;
       width: 100%;
@@ -67,7 +62,6 @@
       top: 16px;
     }
 
-    /* Animação para o X */
     .menu-toggle.open span:nth-child(1) {
       transform: rotate(45deg);
       top: 8px;
@@ -85,20 +79,15 @@
     header h1 {
       margin-left: 15px;
       color: white;
-      /* Branco */
       font-size: 22px;
       user-select: none;
     }
 
-    /* NAV oculto inicialmente */
     nav {
       background-color: gray;
-      /* Fundo cinza */
       position: fixed;
       top: 50px;
-      /* altura do header */
       left: -220px;
-      /* escondido da tela */
       width: 200px;
       height: calc(100% - 50px);
       padding: 20px;
@@ -109,14 +98,6 @@
 
     nav.open {
       left: 0;
-    }
-
-    nav h1 {
-      color: white;
-      /* Branco */
-      font-size: 24px;
-      margin-bottom: 30px;
-      user-select: none;
     }
 
     nav ul {
@@ -132,34 +113,27 @@
 
     nav ul li a {
       color: white;
-      /* Branco */
       text-decoration: none;
       font-size: 16px;
-      user-select: none;
       padding-right: 20px;
-      /* Espaço para a seta */
     }
 
     nav ul li a:hover {
       color: red;
-      /* Vermelho no hover */
     }
 
-    /* Estilos para submenus */
     nav ul li.submenu .arrow {
       position: absolute;
       right: 0;
       top: 0;
       cursor: pointer;
       color: white;
-      /* Branco */
       font-size: 14px;
       user-select: none;
     }
 
     nav ul li.submenu .arrow:hover {
       color: red;
-      /* Vermelho no hover */
     }
 
     nav ul li ul {
@@ -179,18 +153,14 @@
 
     nav ul li ul li a {
       color: #ccc;
-      /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
       font-size: 14px;
       padding-right: 0;
-      /* Sem padding extra nos subitens */
     }
 
     nav ul li ul li a:hover {
       color: red;
-      /* Vermelho no hover */
     }
 
-    /* CONTEÚDO principal */
     main {
       padding: 70px 20px 20px 20px;
       transition: margin-left 0.3s ease;
@@ -200,19 +170,66 @@
       margin-left: 220px;
     }
 
-    /* Estilos do seu conteúdo */
+    @media (min-width: 768px) {
+      nav {
+        left: 0 !important;
+      }
 
+      main {
+        margin-left: 220px !important;
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
+    }
+
+    /* Layout de texto */
+    .texto {
+      margin: 20px;
+      max-width: 900px;
+    }
+
+    .texto h1,
+    .texto h2 {
+      margin-bottom: 10px;
+    }
+
+    /* Cards */
+    .cards {
+      margin: 40px 20px;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: #1f1f1f;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+
+    .card h4 {
+      margin-top: 0;
+    }
+
+    /* Estilos do seu conteúdo do primeiro script */
     .banner {
-      width: 100%;
-      max-width: 100%;
-      margin-bottom: 20px;
+      width: calc(100% + 40px);
+      margin-left: -40px;
+      margin-right: -40px;
+      margin-bottom: 40px;
     }
 
     h2 {
       font-size: 28px;
       font-weight: bold;
       color: red;
-      /* Mantém vermelho */
       font-style: italic;
       margin-bottom: 15px;
     }
@@ -225,9 +242,7 @@
       margin-right: 10px;
       background: none;
       border: 1px solid black;
-      /* Preto para legibilidade */
       color: black;
-      /* Preto */
       padding: 7px 15px;
       cursor: pointer;
       font-size: 14px;
@@ -235,21 +250,18 @@
 
     .buttons button:hover {
       background-color: red;
-      /* Vermelho */
     }
 
     .subtitle {
       font-size: 20px;
       font-style: italic;
       color: #7a66cc;
-      /* Mantém roxo */
       margin-bottom: 8px;
     }
 
     .subtitle2 {
       font-size: 16px;
       color: #2F9B2F;
-      /* Mantém verde */
       margin-bottom: 20px;
     }
 
@@ -271,12 +283,10 @@
       flex: 1;
       font-size: 14px;
       color: #333;
-      /* Cinza escuro para legibilidade */
     }
 
     .content div p.red {
       color: #FF0000;
-      /* Vermelho */
       font-weight: bold;
     }
 
@@ -284,9 +294,7 @@
       margin-top: 20px;
       background: none;
       border: 1px solid black;
-      /* Preto */
       color: black;
-      /* Preto */
       padding: 7px 15px;
       cursor: pointer;
       font-size: 14px;
@@ -294,30 +302,12 @@
 
     .content div button:hover {
       background-color: red;
-      /* Vermelho */
     }
 
     hr {
       border: 0;
       border-top: 1px solid #ccc;
-      /* Cinza claro */
       margin: 30px 0;
-    }
-
-    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
-    @media (min-width: 768px) {
-      nav {
-        left: 0 !important;
-      }
-
-      main {
-        margin-left: 220px !important;
-        padding-top: 20px;
-      }
-
-      header .menu-toggle {
-        display: none;
-      }
     }
   </style>
 </head>
@@ -338,18 +328,20 @@
       <li><a href="site_inicio.html">Início</a></li>
       <li><a href="site_requisito.html">Requisitos de jogos</a></li>
       <li><a href="teste_desempenho.html">Teste de desempenho</a></li>
+
       <li class="submenu" id="computadores-submenu">
         <a href="computadores.html">Computadores</a>
-        <span class="arrow" onclick="toggleSubmenu('computadores-submenu')">▾</span>
+        <span class="arrow" data-target="computadores-submenu">▾</span>
         <ul>
           <li><a href="computadores_games.html">Computadores para games</a></li>
           <li><a href="computadores_edicao.html">Computadores para edição Videos/Fotos</a></li>
           <li><a href="computadores_diario.html">Computadores para uso diário</a></li>
         </ul>
       </li>
+
       <li class="submenu" id="perifericos-submenu">
         <a href="perifericos.html">Periféricos</a>
-        <span class="arrow" onclick="toggleSubmenu('perifericos-submenu')">▾</span>
+        <span class="arrow" data-target="perifericos-submenu">▾</span>
         <ul>
           <li><a href="perifericos_teclados.html">Teclados</a></li>
           <li><a href="perifericos_mouses.html">Mouses</a></li>
@@ -357,13 +349,15 @@
           <li><a href="perifericos_headsets.html">Headsets</a></li>
         </ul>
       </li>
+
       <li><a href="monte_setup.html">Monte seu Setup</a></li>
       <li><a href="sobre_nos.html">Sobre nós</a></li>
     </ul>
   </nav>
 
   <main id="main-content">
-    <img src="https://i.imgur.com/0Yb7l3m.png" alt="Banner TecPrices" class="banner" />
+    <!-- Conteúdo do primeiro script inserido aqui -->
+    <img src="imagens/banners/bannerinicio3.png" alt="Banner TecPrices" class="banner" />
 
     <h2>Veja os nossos departamentos!</h2>
     <div class="buttons">
@@ -376,7 +370,7 @@
     <h3 class="subtitle">Algumas máquinas para Games</h3>
     <p class="subtitle2">Para você que busca melhor desempenho nos Games, clique no botão abaixo:</p>
 
-    <div class="main-content">
+    <div class="content">
       <img src="https://i.imgur.com/Kmt4uXq.jpg" alt="Setup Gamer" />
       <div>
         <p class="red">O que é necessário para jogar games em um PC?</p>
@@ -392,7 +386,6 @@
   </main>
 
   <script src="menu.js"></script>
-
 
 </body>
 
