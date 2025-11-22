@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -275,6 +275,22 @@
       max-height: 180px;
       object-fit: contain;
       user-select: none;
+    }
+
+    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+    @media (min-width: 768px) {
+      nav {
+        left: 0 !important;
+      }
+
+      main {
+        margin-left: 220px !important;
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
     }
   </style>
 </head>
