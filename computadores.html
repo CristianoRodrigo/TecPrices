@@ -266,48 +266,6 @@
   <main id="menu">
   </main>
 
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const sideMenu = document.getElementById('side-menu');
-    const mainContent = document.getElementById('main-content');
-
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('open');
-      sideMenu.classList.toggle('open');
-      mainContent.classList.toggle('shifted');
-    });
-
-    menuToggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        menuToggle.click();
-      }
-    });
-
-    // ---------------------------
-    // Função para toggle submenu
-    // ---------------------------
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(id);
-      const arrow = submenu.querySelector('.arrow');
-
-      submenu.classList.toggle('open');
-
-      if (submenu.classList.contains('open')) {
-        arrow.innerHTML = '▴';
-      } else {
-        arrow.innerHTML = '▾';
-      }
-    }
-
-    // Ativar clique dos submenus (CSP対応)
-    document.querySelectorAll('.arrow').forEach(arrow => {
-      arrow.addEventListener('click', () => {
-        const id = arrow.dataset.target;
-        toggleSubmenu(id);
-      });
-    });
-  </script>
 
   <style>
     .card-container {
@@ -371,7 +329,7 @@
       <div class="card-container">
 
         <div class="card">
-          <img src="memorias/vulcan_3000m8g.webp" alt="VULCAN 8GB 3000MHz">
+          <img src="memorias/" alt="VULCAN 8GB 3000MHz">
           <h4>Team Group T-Force VULCAN 8GB DDR4 3000MHz</h4>
           <p>R$300,00 — Suporte a Intel XMP 2.0, baixa tensão e estabilidade térmica.</p>
         </div>
@@ -542,6 +500,7 @@
 
   </main>
 
+  <script src="menu.js"></script>
 
 
 </body>
