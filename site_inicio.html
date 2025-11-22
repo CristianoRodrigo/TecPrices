@@ -376,7 +376,7 @@
     <h3 class="subtitle">Algumas máquinas para Games</h3>
     <p class="subtitle2">Para você que busca melhor desempenho nos Games, clique no botão abaixo:</p>
 
-    <div class="content">
+    <div class="main-content">
       <img src="https://i.imgur.com/Kmt4uXq.jpg" alt="Setup Gamer" />
       <div>
         <p class="red">O que é necessário para jogar games em um PC?</p>
@@ -391,37 +391,8 @@
     <hr />
   </main>
 
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const sideMenu = document.getElementById('side-menu');
-    const mainContent = document.getElementById('main-content');
+  <script src="menu.js"></script>
 
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('open');
-      sideMenu.classList.toggle('open');
-      mainContent.classList.toggle('shifted');
-    });
-
-    // Permitir abrir menu pelo teclado (Enter / Espaço)
-    menuToggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        menuToggle.click();
-      }
-    });
-
-    // Função para toggle dos submenus
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(id);
-      const arrow = submenu.querySelector('.arrow');
-      submenu.classList.toggle('open');
-      if (submenu.classList.contains('open')) {
-        arrow.innerHTML = '▴';
-      } else {
-        arrow.innerHTML = '▾';
-      }
-    }
-  </script>
 
 </body>
 
