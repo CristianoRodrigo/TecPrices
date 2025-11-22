@@ -7,102 +7,165 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TecPrices - Periféricos</title>
-
+  <title>TecPrices - Computadores</title>
   <style>
     /* Reset básico */
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
-    /* Corpo da página */
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #2b2b2b;
-      /* Fundo muito escuro */
-      color: #ddd;
-      display: flex;
-      min-height: 100vh;
+      background-color: white;
+      /* Fundo branco */
+      color: black;
+      /* Texto preto para legibilidade */
     }
 
-    /* Menu lateral */
-    nav {
-      background-color: #222222;
-      /* Fundo cinza escuro */
-      width: 220px;
-      padding: 20px 15px;
+    /* HEADER com botão de menu */
+    header {
       display: flex;
-      flex-direction: column;
-      user-select: none;
+      align-items: center;
+      background-color: gray;
+      /* Fundo cinza */
+      padding: 10px 15px;
       position: fixed;
+      width: 100%;
       top: 0;
-      bottom: 0;
+      z-index: 1100;
+    }
+
+    /* Ícone hambúrguer */
+    .menu-toggle {
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+      position: relative;
+    }
+
+    .menu-toggle span {
+      background-color: white;
+      /* Branco */
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 3px;
+      left: 0;
+      transition: 0.3s ease;
+    }
+
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      top: 8px;
+    }
+
+    .menu-toggle span:nth-child(3) {
+      top: 16px;
+    }
+
+    /* Animação para o X */
+    .menu-toggle.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 8px;
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 8px;
+    }
+
+    header h1 {
+      margin-left: 15px;
+      color: white;
+      /* Branco */
+      font-size: 22px;
+      user-select: none;
+    }
+
+    /* NAV oculto inicialmente */
+    nav {
+      background-color: gray;
+      /* Fundo cinza */
+      position: fixed;
+      top: 50px;
+      /* altura do header */
+      left: -220px;
+      /* escondido da tela */
+      width: 200px;
+      height: calc(100% - 50px);
+      padding: 20px;
       overflow-y: auto;
-      color: #ccc;
-      font-size: 1rem;
+      transition: left 0.3s ease;
+      z-index: 1050;
+    }
+
+    nav.open {
+      left: 0;
     }
 
     nav h1 {
       color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 2rem;
-      text-align: center;
+      /* Branco */
+      font-size: 24px;
+      margin-bottom: 30px;
+      user-select: none;
     }
 
     nav ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
+      margin: 0;
     }
 
     nav ul li {
-      margin-bottom: 1.1rem;
+      margin: 15px 0;
       position: relative;
     }
 
     nav ul li a {
-      color: #ccc;
+      color: white;
+      /* Branco */
       text-decoration: none;
-      padding-left: 10px;
-      display: block;
-      transition: color 0.3s ease;
+      font-size: 16px;
+      user-select: none;
+      padding-right: 20px;
+      /* Espaço para a seta */
     }
 
     nav ul li a:hover {
-      color: #75b79e;
-      /* Verde azulado */
+      color: red;
+      /* Vermelho no hover */
     }
 
-    /* Submenus */
-    nav ul li.submenu>a {
-      font-weight: 600;
-      cursor: pointer;
-      padding-right: 25px;
-      position: relative;
-      color: #ccc;
-    }
-
-    nav ul li.submenu>.arrow {
+    /* Estilos para submenus */
+    nav ul li.submenu .arrow {
       position: absolute;
-      right: 8px;
-      top: 3px;
-      font-weight: bold;
+      right: 0;
+      top: 0;
       cursor: pointer;
-      color: #ccc;
-      transition: color 0.3s ease;
+      color: white;
+      /* Branco */
+      font-size: 14px;
       user-select: none;
     }
 
-    nav ul li.submenu>.arrow:hover {
-      color: #75b79e;
+    nav ul li.submenu .arrow:hover {
+      color: red;
+      /* Vermelho no hover */
     }
 
-    nav ul li.submenu ul {
+    nav ul li ul {
       list-style: none;
-      margin-top: 6px;
-      margin-left: 15px;
+      padding-left: 20px;
+      margin: 10px 0 0 0;
       display: none;
     }
 
@@ -110,70 +173,150 @@
       display: block;
     }
 
-    nav ul li.submenu ul li a {
-      font-size: 0.9rem;
-      color: #999;
-      padding-left: 15px;
-      margin-bottom: 0.6rem;
+    nav ul li ul li {
+      margin: 10px 0;
     }
 
-    nav ul li.submenu ul li a:hover {
-      color: #75b79e;
+    nav ul li ul li a {
+      color: #ccc;
+      /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
+      font-size: 14px;
+      padding-right: 0;
+      /* Sem padding extra nos subitens */
     }
 
-    /* Conteúdo principal */
+    nav ul li ul li a:hover {
+      color: red;
+      /* Vermelho no hover */
+    }
+
+    /* CONTEÚDO principal */
     main {
+      padding: 70px 20px 20px 20px;
+      transition: margin-left 0.3s ease;
+    }
+
+    main.shifted {
       margin-left: 220px;
-      padding: 20px 30px;
-      flex-grow: 1;
-      overflow-y: auto;
-      background-color: #2b2b2b;
-      /* Fundo escuro da página */
-      min-height: 100vh;
-      color: #ddd;
     }
 
-    /* Grade para periféricos */
-    .perifericos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 25px 20px;
+    /* Estilos do seu conteúdo */
+    .banner {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
     }
 
-    .periferico-item {
-      background-color: #fff;
-      color: #222;
-      border-radius: 6px;
-      padding: 10px 15px;
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      color: red;
+      /* Mantém vermelho */
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      margin-bottom: 30px;
+    }
+
+    .buttons button {
+      margin-right: 10px;
+      background: none;
+      border: 1px solid black;
+      /* Preto para legibilidade */
+      color: black;
+      /* Preto */
+      padding: 7px 15px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .buttons button:hover {
+      background-color: red;
+      /* Vermelho */
+    }
+
+    .subtitle {
+      font-size: 20px;
+      font-style: italic;
+      color: #7a66cc;
+      /* Mantém roxo */
+      margin-bottom: 8px;
+    }
+
+    .subtitle2 {
+      font-size: 16px;
+      color: #2F9B2F;
+      /* Mantém verde */
+      margin-bottom: 20px;
+    }
+
+    .content {
       display: flex;
-      flex-direction: column;
+      gap: 15px;
       align-items: center;
-      min-height: 350px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-      transition: box-shadow 0.3s ease;
+      flex-wrap: wrap;
     }
 
-    .periferico-item:hover {
-      box-shadow: 0 0 15px #75b79eAA;
-    }
-
-    .periferico-item img {
-      max-width: 180px;
-      max-height: 180px;
-      object-fit: contain;
-      margin-bottom: 12px;
-      background-color: #f5f5f5;
+    .content img {
+      max-width: 400px;
       border-radius: 4px;
+      width: 100%;
+      max-width: 400px;
     }
 
-    .periferico-item .nome {
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 0.9rem;
-      text-align: center;
-      height: 50px;
-      overflow: hidden;
-      line-height: 1.15em;
+    .content div {
+      flex: 1;
+      font-size: 14px;
+      color: #333;
+      /* Cinza escuro para legibilidade */
+    }
+
+    .content div p.red {
+      color: #FF0000;
+      /* Vermelho */
+      font-weight: bold;
+    }
+
+    .content div button {
+      margin-top: 20px;
+      background: none;
+      border: 1px solid black;
+      /* Preto */
+      color: black;
+      /* Preto */
+      padding: 7px 15px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .content div button:hover {
+      background-color: red;
+      /* Vermelho */
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      /* Cinza claro */
+      margin: 30px 0;
+    }
+
+    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
+    @media (min-width: 768px) {
+      nav {
+        left: 0 !important;
+      }
+
+      main {
+        margin-left: 220px !important;
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
     }
   </style>
 </head>
