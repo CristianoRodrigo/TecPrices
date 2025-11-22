@@ -3,11 +3,11 @@
 
 <head>
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TecPrices - Mouses</title>
+  <title>TecPrices - Computadores</title>
   <style>
     /* Reset básico */
     * {
@@ -33,7 +33,6 @@
       z-index: 1100;
     }
 
-    /* Ícone hambúrguer */
     .menu-toggle {
       cursor: pointer;
       width: 30px;
@@ -51,28 +50,15 @@
       transition: 0.3s ease;
     }
 
-    .menu-toggle span:nth-child(1) {
-      top: 0;
-    }
+    .menu-toggle span:nth-child(1) { top: 0; }
+    .menu-toggle span:nth-child(2) { top: 8px; }
+    .menu-toggle span:nth-child(3) { top: 16px; }
 
-    .menu-toggle span:nth-child(2) {
-      top: 8px;
-    }
-
-    .menu-toggle span:nth-child(3) {
-      top: 16px;
-    }
-
-    /* Animação para o X */
     .menu-toggle.open span:nth-child(1) {
       transform: rotate(45deg);
       top: 8px;
     }
-
-    .menu-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
     .menu-toggle.open span:nth-child(3) {
       transform: rotate(-45deg);
       top: 8px;
@@ -85,7 +71,6 @@
       user-select: none;
     }
 
-    /* NAV oculto inicialmente */
     nav {
       background-color: gray;
       position: fixed;
@@ -103,13 +88,6 @@
       left: 0;
     }
 
-    nav h1 {
-      color: white;
-      font-size: 24px;
-      margin-bottom: 30px;
-      user-select: none;
-    }
-
     nav ul {
       list-style: none;
       padding: 0;
@@ -125,15 +103,11 @@
       color: white;
       text-decoration: none;
       font-size: 16px;
-      user-select: none;
       padding-right: 20px;
     }
 
-    nav ul li a:hover {
-      color: red;
-    }
+    nav ul li a:hover { color: red; }
 
-    /* Estilos para submenus */
     nav ul li.submenu .arrow {
       position: absolute;
       right: 0;
@@ -144,9 +118,7 @@
       user-select: none;
     }
 
-    nav ul li.submenu .arrow:hover {
-      color: red;
-    }
+    nav ul li.submenu .arrow:hover { color: red; }
 
     nav ul li ul {
       list-style: none;
@@ -169,84 +141,19 @@
       padding-right: 0;
     }
 
-    nav ul li ul li a:hover {
-      color: red;
-    }
+    nav ul li ul li a:hover { color: red; }
 
-    /* CONTEÚDO principal */
     main {
-      padding: 120px 20px 20px 20px;
+      padding: 70px 20px 20px 20px;
       transition: margin-left 0.3s ease;
     }
 
-    main.shifted {
-      margin-left: 220px;
-    }
+    main.shifted { margin-left: 220px; }
 
-    .banner {
-      width: 100%;
-      max-width: 100%;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      font-size: 28px;
-      font-weight: bold;
-      color: red;
-      font-style: italic;
-      margin-bottom: 15px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
-    }
-
-    .product {
-      background: #fff;
-      color: #222;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 6px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-
-    .product:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.45);
-    }
-
-    .product img {
-      max-width: 160px;
-      margin-bottom: 10px;
-    }
-
-    .product .name {
-      font-weight: bold;
-      font-size: 0.85em;
-      margin-bottom: 4px;
-      color: #222;
-      text-align: center;
-    }
-
-    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
     @media (min-width: 768px) {
-      nav {
-        left: 0 !important;
-      }
-
-      main {
-        margin-left: 220px !important;
-        padding-top: 20px;
-      }
-
-      header .menu-toggle {
-        display: none;
-      }
+      nav { left: 0 !important; }
+      main { margin-left: 220px !important; padding-top: 20px; }
+      header .menu-toggle { display: none; }
     }
   </style>
 </head>
