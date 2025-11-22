@@ -248,6 +248,11 @@
       font-size: 14px;
     }
 
+    .justify {
+      width: 500px;
+      text-align: justify;
+      text-justify: inter-word;
+    }
     .buttons button:hover {
       background-color: red;
     }
@@ -266,6 +271,7 @@
     }
 
     .content {
+      margin-top: 20px;
       display: flex;
       gap: 15px;
       align-items: center;
@@ -361,24 +367,50 @@
 
     <h2>Veja os nossos departamentos!</h2>
     <div class="buttons">
-      <button>Computadores</button>
-      <button>Periféricos</button>
-      <button>Monte seu Setup</button>
-      <button>Requisitos de Jogos</button>
+      <a href="computadores.html"><button>Computadores</button></a>
+      <a href="perifericos.html"><button>Periféricos</button></a>
+      <a href="monte_setup.html"><button>Monte seu Setup</button></a>
+      <a href="site_requisito.html"><button>Requisitos de Jogos</button></a>
     </div>
 
     <h3 class="subtitle">Algumas máquinas para Games</h3>
     <p class="subtitle2">Para você que busca melhor desempenho nos Games, clique no botão abaixo:</p>
 
     <div class="content">
-      <img src="https://i.imgur.com/Kmt4uXq.jpg" alt="Setup Gamer" />
+      <img src="imagens/pcs/pcgamer.webp" alt="Setup Gamer" />
       <div>
         <p class="red">O que é necessário para jogar games em um PC?</p>
-        <p>A diferença é a instalação do SSD e GPU (placas de vídeo), o GPU trabalha na parte do
+        <p class="justify" >A diferença é a instalação do SSD e GPU (placas de vídeo), o GPU trabalha na parte do
           carregamento das imagens que CPU não aguenta porque ele é melhor para games.</p>
-        <p>SSD carrega as informações que existe nele, isso melhora muito mais a qualidade do que
+        <p class="justify" >SSD carrega as informações que existe nele, isso melhora muito mais a qualidade do que
           você usar um HD.</p>
-        <button>Máquinas para Gamers</button>
+        <a href="computadores_games.html"><button>Máquinas para Gamers</button></a>
+      </div>
+    </div>
+    <h3 class="subtitle">Algumas máquinas para edição de vídeos/fotos</h3>
+    <p  class="subtitle2">Para você que procura fazer boas montagens de fotos e Edições de vídeos, clique no botão abaixo:</p>
+    <div class="content">
+      <img src="https://i.imgur.com/Kmt4uXq.jpg" alt="Setup Gamer" />
+      <div>
+        <p class="red">O que é necessário para editar fotos e vídeos?</p>
+        <p class="justify" >Máquinas para edição de Imagens e Vídeos precisam muito de RAM e VRAM já que elas carregam 
+          muitos arquivos e precisam ter potencial de editar as imagens e vídeos.</p>
+        <p class="justify" >SSD carrega as informações que existe nele, isso melhora muito mais a qualidade do que
+          você usar um HD.</p>
+        <a href="computadores_edicao.html"><button>Máquinas para Edição</button></a>
+      </div>
+    </div>
+    <h3 class="subtitle">Algumas máquinas para LiveStreaming/Suporte Chat</h3>
+    <p class="subtitle2">Para você que procura monitores melhor qualidade em suas lives/ monitores secundários para 
+      <br>melhor interação com o chat, clique no botão abaixo:</p>
+    <div class="content">
+      <img src="https://i.imgur.com/Kmt4uXq.jpg" alt="Setup Gamer" />
+      <div>
+        <p class="red">O que é necessário para um computador de uso diário?</p>
+        <p class="justify" >Máquinas de uso diário podem ter custo menor, pois são feitas para tarefas simples, como navegar, estudar e trabalhar, sem exigir alto desempenho como PCs de jogos ou streaming.</p>
+        <p class="justify" >SSD carrega as informações que existe nele, isso melhora muito mais a qualidade do que
+          você usar um HD.</p>
+        <a href="computadores_diario.html"><button>Máquinas para uso diário</button></a>
       </div>
     </div>
 
