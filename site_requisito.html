@@ -3,11 +3,11 @@
 
 <head>
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TecPrices</title> <!-- Título mudado para "Jogos" -->
+  <title>TecPrices - Computadores</title>
   <style>
     /* Reset básico */
     * {
@@ -18,9 +18,7 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: white;
-      /* Fundo branco mantido */
       color: black;
-      /* Texto preto para legibilidade */
     }
 
     /* HEADER com botão de menu */
@@ -28,7 +26,6 @@
       display: flex;
       align-items: center;
       background-color: gray;
-      /* Fundo cinza */
       padding: 10px 15px;
       position: fixed;
       width: 100%;
@@ -36,7 +33,6 @@
       z-index: 1100;
     }
 
-    /* Ícone hambúrguer */
     .menu-toggle {
       cursor: pointer;
       width: 30px;
@@ -46,7 +42,6 @@
 
     .menu-toggle span {
       background-color: white;
-      /* Branco */
       position: absolute;
       height: 3px;
       width: 100%;
@@ -55,28 +50,15 @@
       transition: 0.3s ease;
     }
 
-    .menu-toggle span:nth-child(1) {
-      top: 0;
-    }
+    .menu-toggle span:nth-child(1) { top: 0; }
+    .menu-toggle span:nth-child(2) { top: 8px; }
+    .menu-toggle span:nth-child(3) { top: 16px; }
 
-    .menu-toggle span:nth-child(2) {
-      top: 8px;
-    }
-
-    .menu-toggle span:nth-child(3) {
-      top: 16px;
-    }
-
-    /* Animação para o X */
     .menu-toggle.open span:nth-child(1) {
       transform: rotate(45deg);
       top: 8px;
     }
-
-    .menu-toggle.open span:nth-child(2) {
-      opacity: 0;
-    }
-
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
     .menu-toggle.open span:nth-child(3) {
       transform: rotate(-45deg);
       top: 8px;
@@ -85,20 +67,15 @@
     header h1 {
       margin-left: 15px;
       color: white;
-      /* Branco */
       font-size: 22px;
       user-select: none;
     }
 
-    /* NAV oculto inicialmente */
     nav {
       background-color: gray;
-      /* Fundo cinza */
       position: fixed;
       top: 50px;
-      /* altura do header */
       left: -220px;
-      /* escondido da tela */
       width: 200px;
       height: calc(100% - 50px);
       padding: 20px;
@@ -109,14 +86,6 @@
 
     nav.open {
       left: 0;
-    }
-
-    nav h1 {
-      color: white;
-      /* Branco */
-      font-size: 24px;
-      margin-bottom: 30px;
-      user-select: none;
     }
 
     nav ul {
@@ -132,35 +101,24 @@
 
     nav ul li a {
       color: white;
-      /* Branco */
       text-decoration: none;
       font-size: 16px;
-      user-select: none;
       padding-right: 20px;
-      /* Espaço para a seta */
     }
 
-    nav ul li a:hover {
-      color: red;
-      /* Vermelho no hover */
-    }
+    nav ul li a:hover { color: red; }
 
-    /* Estilos para submenus */
     nav ul li.submenu .arrow {
       position: absolute;
       right: 0;
       top: 0;
       cursor: pointer;
       color: white;
-      /* Branco */
       font-size: 14px;
       user-select: none;
     }
 
-    nav ul li.submenu .arrow:hover {
-      color: red;
-      /* Vermelho no hover */
-    }
+    nav ul li.submenu .arrow:hover { color: red; }
 
     nav ul li ul {
       list-style: none;
@@ -179,121 +137,23 @@
 
     nav ul li ul li a {
       color: #ccc;
-      /* Mantém cinza claro para subitens, mas ajustado para legibilidade */
       font-size: 14px;
       padding-right: 0;
-      /* Sem padding extra nos subitens */
     }
 
-    nav ul li ul li a:hover {
-      color: red;
-      /* Vermelho no hover */
-    }
+    nav ul li ul li a:hover { color: red; }
 
-    /* CONTEÚDO principal */
     main {
       padding: 70px 20px 20px 20px;
       transition: margin-left 0.3s ease;
-      max-width: 700px;
-      /* Limitação de largura para o conteúdo dos jogos */
-      margin: 70px auto 20px auto;
-      /* Centralizado */
-      line-height: 1.5;
     }
 
-    main.shifted {
-      margin-left: 220px;
-    }
+    main.shifted { margin-left: 220px; }
 
-    /* Estilos adaptados do conteúdo dos jogos (ajustados para fundo branco) */
-    .game {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 40px;
-      align-items: flex-start;
-    }
-
-    .placeholder-image {
-      width: 130px;
-      height: 180px;
-      background-color: #ddd;
-      /* Cinza claro para legibilidade no fundo branco */
-      border-radius: 6px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      /* Cinza escuro para o texto */
-      font-size: 14px;
-      text-align: center;
-      padding: 10px;
-      user-select: none;
-    }
-
-    .game-info {
-      flex: 1;
-    }
-
-    h2 {
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-weight: 600;
-      font-size: 1.35em;
-      color: red;
-      /* Vermelho para destacar, combinando com o tema */
-    }
-
-    p {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 0.95em;
-      color: #333;
-      /* Cinza escuro para legibilidade */
-    }
-
-    .requirements {
-      display: flex;
-      gap: 30px;
-      font-size: 0.9em;
-    }
-
-    .requirements div {
-      flex: 1;
-    }
-
-    .requirements strong {
-      display: block;
-      margin-bottom: 6px;
-      color: red;
-      /* Vermelho para destacar */
-    }
-
-    ul {
-      margin: 4px 0 0 18px;
-      padding: 0;
-      color: #666;
-      /* Cinza escuro */
-    }
-
-    ul li {
-      margin-bottom: 4px;
-    }
-
-    /* RESPONSIVO - para telas maiores o menu fica aberto sempre e ícone desaparece */
     @media (min-width: 768px) {
-      nav {
-        left: 0 !important;
-      }
-
-      main {
-        margin-left: 220px !important;
-        padding-top: 20px;
-      }
-
-      header .menu-toggle {
-        display: none;
-      }
+      nav { left: 0 !important; }
+      main { margin-left: 220px !important; padding-top: 20px; }
+      header .menu-toggle { display: none; }
     }
   </style>
 </head>
