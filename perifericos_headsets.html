@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.imgur.com; object-src 'none'; base-uri 'self'; form-action 'self';" />
@@ -50,15 +53,27 @@
       transition: 0.3s ease;
     }
 
-    .menu-toggle span:nth-child(1) { top: 0; }
-    .menu-toggle span:nth-child(2) { top: 8px; }
-    .menu-toggle span:nth-child(3) { top: 16px; }
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      top: 8px;
+    }
+
+    .menu-toggle span:nth-child(3) {
+      top: 16px;
+    }
 
     .menu-toggle.open span:nth-child(1) {
       transform: rotate(45deg);
       top: 8px;
     }
-    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
     .menu-toggle.open span:nth-child(3) {
       transform: rotate(-45deg);
       top: 8px;
@@ -71,92 +86,81 @@
       user-select: none;
     }
 
-    nav {
-      background-color: gray;
-      position: fixed;
-      top: 50px;
-      left: -220px;
-      width: 200px;
-      height: calc(100% - 50px);
-      padding: 20px;
-      overflow-y: auto;
-      transition: left 0.3s ease;
-      z-index: 1050;
-    }
-
-    nav.open {
-      left: 0;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav ul li {
-      margin: 15px 0;
-      position: relative;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      padding-right: 20px;
-    }
-
-    nav ul li a:hover { color: red; }
-
-    nav ul li.submenu .arrow {
-      position: absolute;
-      right: 0;
-      top: 0;
-      cursor: pointer;
-      color: white;
-      font-size: 14px;
-      user-select: none;
-    }
-
-    nav ul li.submenu .arrow:hover { color: red; }
-
-    nav ul li ul {
-      list-style: none;
-      padding-left: 20px;
-      margin: 10px 0 0 0;
-      display: none;
-    }
-
-    nav ul li.submenu.open ul {
-      display: block;
-    }
-
-    nav ul li ul li {
-      margin: 10px 0;
-    }
-
-    nav ul li ul li a {
-      color: #ccc;
-      font-size: 14px;
-      padding-right: 0;
-    }
-
-    nav ul li ul li a:hover { color: red; }
-
     main {
       padding: 70px 20px 20px 20px;
       transition: margin-left 0.3s ease;
     }
 
-    main.shifted { margin-left: 220px; }
-
     @media (min-width: 768px) {
-      nav { left: 0 !important; }
-      main { margin-left: 220px !important; padding-top: 20px; }
-      header .menu-toggle { display: none; }
+      main {
+        padding-top: 20px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
     }
   </style>
 </head>
+
+<body>
+
+  <header>
+    <div class="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+    <h1>TecPrices</h1>
+  </header>
+
+  <main role="main" id="main-content" tabindex="-1">
+    <div class="perifericos-grid">
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 1" />
+        <div class="nome">Nome do Periférico 1</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 2" />
+        <div class="nome">Nome do Periférico 2</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 3" />
+        <div class="nome">Nome do Periférico 3</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 4" />
+        <div class="nome">Nome do Periférico 4</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 5" />
+        <div class="nome">Nome do Periférico 5</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 6" />
+        <div class="nome">Nome do Periférico 6</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 7" />
+        <div class="nome">Nome do Periférico 7</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 8" />
+        <div class="nome">Nome do Periférico 8</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 9" />
+        <div class="nome">Nome do Periférico 9</div>
+      </div>
+      <div class="periferico-item">
+        <img src="" alt="Imagem do periférico 10" />
+        <div class="nome">Nome do Periférico 10</div>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
+
 
 <body>
   <nav aria-label="Menu principal TecPrices">
@@ -239,31 +243,7 @@
     </div>
   </main>
 
-  <script>
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(id);
-      submenu.classList.toggle('open');
 
-      const arrow = submenu.querySelector('.arrow');
-      if (submenu.classList.contains('open')) {
-        arrow.textContent = '▴';
-        submenu.querySelector('ul').style.display = 'block';
-      } else {
-        arrow.textContent = '▾';
-        submenu.querySelector('ul').style.display = 'none';
-      }
-    }
-
-    // Para acessibilidade com teclas no ícone de seta
-    document.querySelectorAll('nav .arrow').forEach(arrow => {
-      arrow.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          this.click();
-        }
-      });
-    });
-  </script>
 </body>
 
 </html>
