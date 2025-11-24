@@ -282,16 +282,16 @@
     .card-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 25px;
+      gap: 30px;
       justify-content: center;
-      padding: 10px 0;
+      padding: 20px 0;
     }
 
     .card {
-      width: 260px;
-      background: #222;
+      width: 380px;
+      background: gray;
       color: white;
-      padding: 15px;
+      padding: 10px;
       border-radius: 6px;
 
     }
@@ -310,14 +310,16 @@
 
     .card p {
       font-size: 14px;
-      color: #c05a5a;
+      color: white;
     }
 
     .card img {
-      width: 230px;
-      height: 150px;
-      object-fit: cover;
-      /* はみ出た部分をカットして同じサイズに */
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      /* 画像全体を表示しつつ収める */
+      background: #fff;
+      /* 空き部分の色を白にする（黒じゃなくなる） */
     }
   </style>
 
@@ -430,25 +432,25 @@
       <div class="card-container">
 
         <div class="card">
-          <img src="" alt="Ryzen 5 3600">
+          <img src="imagens/CPU/Ryzen 5 3600.jpg" alt="Ryzen 5 3600">
           <h4>Ryzen 5 3600</h4>
           <p>R$899 — 6 núcleos, ótimo desempenho em jogos.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="Ryzen 5 4650G">
+          <img src="imagens/CPU/AMD Ryzen 5 5500.jpg" alt="AMD Ryzen 5 5500">
           <h4>Ryzen 5 4650G</h4>
           <p>R$799 — Gráficos integrados, ótimo custo-benefício.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="Intel i5-9400F">
+          <img src="imagens/CPU/Intel i5-9400F.webp" alt="Intel i5-9400F">
           <h4>Intel i5-9400F</h4>
           <p>R$899 — Excelentes clocks e desempenho geral.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="Intel i3-10100F">
+          <img src="imagens/CPU/Intel i3-10100F.webp" alt="Intel i3-10100F">
           <h4>Intel i3-10100F</h4>
           <p>R$519 — Hyper-Threading, excelente para orçamento baixo.</p>
         </div>
@@ -470,25 +472,25 @@
       <div class="card-container">
 
         <div class="card">
-          <img src="" alt="Corsair VS500">
+          <img src="imagens/Fontes/Fonte Gamer Redragon RGPS 500W, 80 Plus.webp" alt="Fonte Gamer Redragon RGPS 500W">
           <h4>Corsair VS500</h4>
           <p>R$400 — 500W reais, PFC ativo, 3 anos de garantia.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="AZZA 650W RGB">
+          <img src="imagens/Fontes/AZZA 650W RGB.jpg" alt="AZZA 650W RGB">
           <h4>AZZA 650W RGB</h4>
           <p>R$260 — RGB, custo-benefício muito bom.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="Bright 650W Bronze">
+          <img src="imagens/Fontes/BRX Rainbow RGB, 650W.jpg" alt="BRX Rainbow RGB, 650W">
           <h4>Bright 650W Bronze</h4>
           <p>R$299 — Baixo ruído, RGB e boa construção.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="XPG Pylon 750W">
+          <img src="imagens/Fontes/MSI MAG A750BN PCIE5, 750W.jpg" alt="MSI MAG A750BN PCIE5, 750W">
           <h4>XPG Pylon 750W</h4>
           <p>R$459 — Suporta PCs fortes, muito estável.</p>
         </div>
@@ -510,25 +512,25 @@
       <div class="card-container">
 
         <div class="card">
-          <img src="" alt="Kingston A400 480GB">
+          <img src="imagens/ssd/Kingston A400 480GB.webp" alt="Kingston A400 480GB">
           <h4>Kingston A400 480GB</h4>
           <p>R$282 — Ótimo para Windows e apps leves.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="PNY CS900 1TB">
+          <img src="imagens/ssd/PNY CS900 1TB.webp" alt="PNY CS900 1TB">
           <h4>PNY CS900 1TB</h4>
           <p>R$499 — 1TB, excelente para jogos e edição.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="Crucial BX500 480GB">
+          <img src="imagens/ssd/Crucial BX500 480GB.webp" alt="Crucial BX500 480GB">
           <h4>Crucial BX500 480GB</h4>
           <p>R$225 — Barato e bom para uso geral.</p>
         </div>
 
         <div class="card">
-          <img src="" alt="Sandisk 240GB">
+          <img src="imagens/ssd/Sandisk 240GB.webp" alt="Sandisk 240GB">
           <h4>Sandisk 240GB</h4>
           <p>R$235 — Para quem quer apenas o sistema e apps leves.</p>
         </div>
