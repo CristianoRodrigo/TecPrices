@@ -21,7 +21,7 @@
       color: black;
     }
 
-    /* HEADER com botão de menu */
+    /* HEADER */
     header {
       display: flex;
       align-items: center;
@@ -31,6 +31,7 @@
       width: 100%;
       top: 0;
       z-index: 1100;
+      height: 50px;
     }
 
     .menu-toggle {
@@ -50,15 +51,27 @@
       transition: 0.3s ease;
     }
 
-    .menu-toggle span:nth-child(1) { top: 0; }
-    .menu-toggle span:nth-child(2) { top: 8px; }
-    .menu-toggle span:nth-child(3) { top: 16px; }
+    .menu-toggle span:nth-child(1) {
+      top: 0;
+    }
+
+    .menu-toggle span:nth-child(2) {
+      top: 8px;
+    }
+
+    .menu-toggle span:nth-child(3) {
+      top: 16px;
+    }
 
     .menu-toggle.open span:nth-child(1) {
       transform: rotate(45deg);
       top: 8px;
     }
-    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
     .menu-toggle.open span:nth-child(3) {
       transform: rotate(-45deg);
       top: 8px;
@@ -71,6 +84,7 @@
       user-select: none;
     }
 
+    /* SIDEBAR */
     nav {
       background-color: gray;
       position: fixed;
@@ -106,7 +120,9 @@
       padding-right: 20px;
     }
 
-    nav ul li a:hover { color: red; }
+    nav ul li a:hover {
+      color: red;
+    }
 
     nav ul li.submenu .arrow {
       position: absolute;
@@ -118,7 +134,9 @@
       user-select: none;
     }
 
-    nav ul li.submenu .arrow:hover { color: red; }
+    nav ul li.submenu .arrow:hover {
+      color: red;
+    }
 
     nav ul li ul {
       list-style: none;
@@ -141,19 +159,131 @@
       padding-right: 0;
     }
 
-    nav ul li ul li a:hover { color: red; }
-
-    main {
-      padding: 70px 20px 20px 20px;
-      transition: margin-left 0.3s ease;
+    nav ul li ul li a:hover {
+      color: red;
     }
 
-    main.shifted { margin-left: 220px; }
+    /* MAIN CONTENT */
+    main {
+      padding: 60px 20px 20px 20px;
+      /* ヘッダー分の余白 */
+      transition: margin-left 0.3s ease;
+      margin-left: 0;
+    }
+
+    main.shifted {
+      margin-left: 200px;
+      /* navの幅に合わせる */
+    }
 
     @media (min-width: 768px) {
-      nav { left: 0 !important; }
-      main { margin-left: 220px !important; padding-top: 20px; }
-      header .menu-toggle { display: none; }
+      nav {
+        left: 0 !important;
+      }
+
+      main {
+        margin-left: 200px;
+        padding-top: 60px;
+      }
+
+      header .menu-toggle {
+        display: none;
+      }
+    }
+
+    /* ゲームコンテンツ */
+    #main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #333;
+    }
+
+    .game {
+      display: flex;
+      flex-wrap: wrap;
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .game:hover {
+      transform: translateY(-4px);
+    }
+
+    .placeholder-image {
+      flex: 1 1 40%;
+      min-width: 280px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .game-info {
+      flex: 1 1 60%;
+      padding: 25px;
+    }
+
+    .game-info h2 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      color: #222;
+    }
+
+    .game-info p {
+      margin: 50px 0;
+      line-height: 1.6;
+
+    }
+
+    .requirements {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .requirements div {
+      flex: 1 1 45%;
+      background: transparent;
+      border: 1px solid gray;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .requirements strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #444;
+    }
+
+    .requirements ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .requirements li {
+      margin-bottom: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .game {
+        flex-direction: column;
+      }
+
+      .placeholder-image,
+      .game-info {
+        flex: 1 1 100%;
+      }
     }
   </style>
 </head>
@@ -161,6 +291,11 @@
 <body>
 
   <header>
+
+
+    <!-- 外部JSを読み込み -->
+    <script src="menu.js"></script>
+
     <div class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" role="button" tabindex="0">
       <span></span>
       <span></span>
@@ -201,11 +336,14 @@
   <main id="main-content">
     <!-- Conteúdo dos jogos inserido aqui, com estilos adaptados -->
     <section class="game">
-      <div class="placeholder-image">Imagem<br />The Last of Us Part I</div>
+      <div class="placeholder-image">
+        <img src="imagens/games/The Last of Us Part I.webp" alt="The Last of Us Part I" />
+      </div>
       <div class="game-info">
         <h2>The Last of Us Part I (PC)</h2>
         <p>
-          Este é um jogo original, que pode ser encontrado para PC. Este clássico game pós-apocalíptico, baseado em uma
+          Este é um jogo original, que pode ser encontrado para PC. Este clássico game pós-apocalíptico, baseado em
+          uma
           história emocionante de sobrevivência, combate e amizade, agora está em uma nova versão que está causando a
           maior comoção do ano entre os gamers por sua atmosfera realista, detalhada e sombria.
         </p>
@@ -235,7 +373,9 @@
     </section>
 
     <section class="game">
-      <div class="placeholder-image">Imagem<br />Counter-Strike 2</div>
+      <div class="placeholder-image">
+        <img src="imagens/games/Counter-Strike 2 (CS2).png" alt="Counter-Strike 2" />
+      </div>
       <div class="game-info">
         <h2>Counter-Strike 2 (CS2)</h2>
         <p>
@@ -268,7 +408,9 @@
     </section>
 
     <section class="game">
-      <div class="placeholder-image">Imagem<br />Red Dead Redemption II</div>
+      <div class="placeholder-image">
+        <img src="images/lastofus.jpg" alt="Red Dead Redemption II" />
+      </div>
       <div class="game-info">
         <h2>Red Dead Redemption II</h2>
         <p>
@@ -301,7 +443,9 @@
     </section>
 
     <section class="game">
-      <div class="placeholder-image">Imagem<br />Rocket League</div>
+      <div class="placeholder-image">
+        <img src="images/lastofus.jpg" alt="Rocket League" />
+      </div>
       <div class="game-info">
         <h2>Rocket League</h2>
         <p>
@@ -333,39 +477,6 @@
       </div>
     </section>
   </main>
-
-  <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const sideMenu = document.getElementById('side-menu');
-    const mainContent = document.getElementById('main-content');
-
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('open');
-      sideMenu.classList.toggle('open');
-      mainContent.classList.toggle('shifted');
-    });
-
-    // Permitir abrir menu pelo teclado (Enter / Espaço)
-    menuToggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        menuToggle.click();
-      }
-    });
-
-    // Função para toggle dos submenus
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(id);
-      const arrow = submenu.querySelector('.arrow');
-      submenu.classList.toggle('open');
-      if (submenu.classList.contains('open')) {
-        arrow.innerHTML = '▴';
-      } else {
-        arrow.innerHTML = '▾';
-      }
-    }
-  </script>
-
 </body>
 
 </html>
